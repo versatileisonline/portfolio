@@ -1,7 +1,10 @@
-import type { NextConfig } from "next";
+/** @type {import('next').NextConfig} */
+const isGH = process.env.GITHUB_PAGES === 'true';
+const repo = 'portfolio'; // <-- your subpath
 
-const nextConfig: NextConfig = {
-  /* config options here */
+module.exports = {
+  output: 'export',
+  images: { unoptimized: true },
+  trailingSlash: true,
+  ...(isGH ? { basePath: `/${repo}`, assetPrefix: `/${repo}/` } : {}),
 };
-
-export default nextConfig;
