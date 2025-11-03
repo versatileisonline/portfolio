@@ -1,5 +1,6 @@
 import './App.css'
-import { Container, Stack, Avatar, Typography, Box } from "@mui/material";
+import { Container, Stack, Avatar, Box, Typography } from "@mui/material";
+import profilePic from "./assets/IMG_9088.jpg"
 
 function App() {
   return (
@@ -13,11 +14,15 @@ function App() {
 
           <Avatar
           alt="bryan"
-          src="/IMG_9088.jpg"
+          src={profilePic}
           sx={{ width: 160, height: 160}}
           />
 
         </Box>
+
+        <Typography fontWeight={800}>
+          Hi! Welcome to my portfolio
+        </Typography>
 
       </Stack>
     </Container>
