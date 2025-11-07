@@ -9,20 +9,27 @@ function App() {
 
         <Box
         sx={{
-          p: 1, borderRadius: "50%", background: "linear-gradient(135deg, rgba(99,102,241,.4), rgba(56,189,248,.4))",
+          p: 1, borderRadius: "50%", background: "linear-gradient(135deg, rgba(119, 74, 25, 0.4), rgba(205, 114, 35, 1))",
         }}>
 
           <Avatar
           alt="bryan"
           src={profilePic}
-          sx={{ width: 160, height: 160}}
+          sx={{ width: 300, height: 300}}
           />
 
         </Box>
 
         <Typography fontWeight={800}>
-          Hi! Welcome to my portfolio
+          placing
         </Typography>
+
+        <Box
+        sx={{backgroundColor: "white"}}>
+          <Typography>
+            example text.
+          </Typography>
+        </Box>
 
       </Stack>
     </Container>
