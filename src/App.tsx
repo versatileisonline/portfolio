@@ -132,9 +132,9 @@ function App() {
     <Box className="app-shell">
       <AppBar position="sticky" elevation={0} className="topbar" sx={{bgcolor:'#000000ff'}}>
         <Toolbar className="topbar-toolbar">
-          <Typography component="a" href="#home" className="brand-mark">
+          <Box component="a" href="#home" className="brand-mark">
             BT
-          </Typography>
+          </Box>
 
           <Stack direction="row" spacing={1} className="topbar-links">
             {navItems.map((item) => (
@@ -166,10 +166,8 @@ function App() {
                   </Box>
 
                   <Typography className="hero-subtitle">
-                    <Box component="span" className="hero-subtitle-strong">
-                      Hey, I&apos;m <Box component="span" className="hero-name-highlight">Bryan Torres</Box>.
-                    </Box>{' '}
-                    Here, you can check out what I&apos;m working on. I do my best to contribute to impactful projects.
+                    Hey, I&apos;m <Box component="span" className="hero-name-highlight">Bryan Torres</Box>. Here, you
+                    can check out what I&apos;m working on. I do my best to contribute to impactful projects.
                   </Typography>
                   <Box className="contact-grid">
                     {contactLinks.map((item) => (
@@ -211,7 +209,9 @@ function App() {
             <Card className="section-card about-card">
               <CardContent className="about-card-content">
                 <Typography className="card-description">
-                I want to make an impact on the world, whether for students, healthcare personnels, or fellow coders. 
+                I want to make an impact on the world, whether for students, healthcare personnels, or fellow coders. I'm drawn to building things that actually make someone's day better. Tools that give people back time. I care about work that has a real effect beyond the screen. At the end of the day, I don't just want to write code, I want to build things that matter. 
+                
+                Aside from that, I have a range of interests outside of coding. I enjoy reading, playing games and staying active. It's always how I get my mood and creativity up.
                 </Typography>
               </CardContent>
             </Card>

@@ -1,7 +1,31 @@
+@font-face {
+  font-family: 'Poppins';
+  src: url('./assets/fonts/Poppins-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('./assets/fonts/Poppins-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('./assets/fonts/Poppins-ExtraBold.ttf') format('truetype');
+  font-weight: 800 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   /* Font boilerplate: replace these with your preferred font stack. */
-  --font-body: 'Avenir Next', 'Segoe UI', sans-serif; /* Add your own font here */
-  --font-display: 'Avenir Next', 'Segoe UI', sans-serif, 'Po'; /* Add your own font here */
+  --font-body: 'Poppins', 'Avenir Next', 'Segoe UI', sans-serif; /* Add your own font here */
+  --font-display: 'Poppins', 'Avenir Next', 'Segoe UI', sans-serif; /* Add your own font here */
   font-family: var(--font-body);
   line-height: 1.5;
   font-weight: 400;
@@ -18,6 +42,7 @@
   --text-primary: #f4f5f7;
   --text-secondary: #b9bcc3;
   --accent: #5caaff;
+  --brand-accent: #f08b4c;
 }
 
 html {
@@ -30,6 +55,14 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background: var(--bg-primary);
+  font-family: var(--font-body);
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: var(--font-body);
 }
 
 a {
@@ -42,6 +75,15 @@ a {
 
 #root {
   min-height: 100vh;
+}
+
+.MuiTypography-root,
+.MuiButton-root,
+.MuiChip-root,
+.MuiCard-root,
+.MuiToolbar-root,
+.MuiAppBar-root {
+  font-family: var(--font-body) !important;
 }
 
 ::selection {
