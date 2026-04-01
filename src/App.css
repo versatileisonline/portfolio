@@ -79,6 +79,12 @@
   background: rgba(255, 255, 255, 0.08);
 }
 
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(26px) scale(0.985);
+  animation: fadeInUp 720ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
 .theme-toggle {
   width: 44px;
   height: 44px;
@@ -151,6 +157,18 @@
   letter-spacing: -0.05em;
   color: var(--text-primary);
   font-family: var(--font-display);
+}
+
+.hero-title-text {
+  display: inline-block;
+}
+
+.hero-title-cursor {
+  display: inline-block;
+  margin-left: 0.12em;
+  color: var(--accent);
+  font-weight: 700;
+  animation: blinkCursor 1.05s steps(1, end) infinite;
 }
 
 .hero-subtitle,
@@ -267,6 +285,7 @@
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 800;
   letter-spacing: -0.04em;
+  color: var(--accent);
 }
 
 .about-card-content {
@@ -303,12 +322,13 @@
 .card-title {
   margin-top: 0.55rem;
   margin-bottom: 0.8rem;
-  color: var(--text-primary);
-  font-weight: 700;
+  color: var(--accent);
+  font-weight: 800;
 }
 
 .tag-row {
   margin-top: 1.2rem;
+  margin-bottom: 1rem;
 }
 
 .info-chip {
@@ -320,6 +340,33 @@
 .info-chip .MuiChip-label {
   color: var(--text-primary) !important;
   font-weight: 600;
+}
+
+.card-eyebrow,
+.experience-period {
+  color: var(--brand-accent);
+}
+
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.25rem;
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.project-link:hover {
+  color: var(--brand-accent);
+}
+
+.project-link-label {
+  line-height: 1;
+}
+
+.project-link-icon {
+  font-size: 1.05rem !important;
 }
 
 .experience-stack {
@@ -377,6 +424,30 @@
   color: var(--text-secondary);
 }
 
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(26px) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes blinkCursor {
+  0%,
+  49% {
+    opacity: 1;
+  }
+
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
 @media (max-width: 900px) {
   .hero-grid,
   .projects-grid,
@@ -412,5 +483,14 @@
   .hero-avatar {
     width: min(400px, 86vw) !important;
     height: min(400px, 86vw) !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-in-up,
+  .hero-title-cursor {
+    animation: none;
+    opacity: 1;
+    transform: none;
   }
 }

@@ -27,6 +27,8 @@ import profilePic from './assets/IMG_9088.jpg'
 
 import resume from './assets/resume_bryan01.pdf'
 
+import melanoma from './assets/melanoma_detection.pdf'
+
 const navItems = [
   { label: 'Home', id: 'home' },
   { label: 'About Me', id: 'about' },
@@ -64,8 +66,10 @@ const contactLinks = [
 
 const projectCards = [
   {
-    eyebrow: 'Most recent',
+    eyebrow: 'IN PROGRESS',
     title: 'ML For Healthcare: Melanoma Classification',
+    href: melanoma,
+    linkLabel: 'View project',
     description:
       'Built a machine leraning pipeline for melanoma image classification, focusing on early skin cancer detection from images.',
     tags: ['Melanoma Detection', 'Medical Imaging', 'Python / Jupyter Notebook'],
@@ -73,13 +77,17 @@ const projectCards = [
   {
     eyebrow: 'academia work',
     title: 'M.A.R.C.O - Multi-Agent Reactive Code Optimizer',
+    href: 'https://arxiv.org/pdf/2505.03906',
+    linkLabel: 'View project',
     description:
       'Built as part of my undergraduate research, MARCO is an agentic AI framework designed for automated, reliable kernel generation and optimization. Proving that LLMs, when equipped with specialized domain guidance, can reliably automate the development of complex GPU kernels with optimal performance and high efficiency.',
     tags: ['High-performance Computing (HPC)', 'Agentic AI Framework', 'Benchmarking'],
   },
   {
-    eyebrow: 'In Progress',
+    eyebrow: 'Most recent',
     title: 'Canvas+',
+    href: 'https://github.com/versatileisonline/CanvasPlus',
+    linkLabel: 'View project',
     description:
       'A Chromium-based browser extension that reimagines the Canvas dashboard with a more centralized course homepage. This project focuses on improving how students manage assignemnts, notes and academic focus by creating a cleaner and more useful experience on top of the existing LMS.',
     tags: ['Browser Extension', 'UX Iteration', 'Student Productivity'],
@@ -114,7 +122,7 @@ const experienceCards = [
     role: 'Software & DevOps Intern',
     organization: 'Dark Wolf Solutions',
     description:
-      'Over the summer I worked at Dark Wolf Solutions as a Software & DevOps Intern, working on Project Syndicate.'
+      'Over the summer I worked at Dark Wolf Solutions as a Software & DevOps Intern, working on Project Syndicate. Working at Dark Wolf helped me grow professionally by showing me what it looks like to work on a real engineering team where communication, collaboration and accountability mattered every day. I worked closely with two other interns, and being able to share ideas, solve problems together, and learn from each other. That is what made the experience valuable and special. We operated in an agile environment with daily standups, biweekly sprints, live code reviews and using GitLab for ticketing, which helped me become more comfortable discussing questions and progress. We were guided under fellow engineers, giving us insight into how professional software teams organize, mentor, and build at scale. On the technical end, we helped create the user interface for Syndicate, a pipeline dashboard designed across pipeline, application and organization level vies. We built and deployed a full containzered system using PostgreSQL, a Next.js frontend, a FastAPI backend, and Dex for OAuth, with deployments running through GKE. Overall, the internship strengthed both my technical foundation and my confidence in working as part of a collaborative engineering team.'
       + '',
   },
 ]
@@ -193,13 +201,14 @@ function App() {
       <Box component="main">
         <Container maxWidth="lg" className="page-content">
           <Box component="section" id="home" className="hero-section">
-            <Box className="hero-panel">
+            <Box className="hero-panel fade-in-up" style={{ animationDelay: '80ms' }}>
               <Box className="hero-grid">
                 <Stack spacing={3.5} className="hero-copy">
                   <Box>
                     {/* <Typography className="hero-eyebrow">Portfolio</Typography> */}
                     <Typography variant="h1" className="hero-title">
-                      Bryan Torres
+                      <Box component="span" className="hero-name-highlight">Bryan Torres</Box>
+                      <Box component="span" aria-hidden="true" className="hero-title-cursor">|</Box>
                     </Typography>
                   </Box>
 
@@ -208,14 +217,15 @@ function App() {
                     can check out what I&apos;m working on. I do my best to contribute to impactful projects.
                   </Typography>
                   <Box className="contact-grid">
-                    {contactLinks.map((item) => (
+                    {contactLinks.map((item, index) => (
                       <Box
                         key={item.label}
                         component="a"
                         href={item.href}
                         target={item.href.startsWith('http') ? '_blank' : undefined}
                         rel={item.href.startsWith('http') ? 'noreferrer' : undefined}
-                        className="contact-card"
+                        className="contact-card fade-in-up"
+                        style={{ animationDelay: `${160 + index * 90}ms` }}
                       >
                         <Box className="contact-icon">{item.icon}</Box>
                         <Box className="contact-copy">
@@ -229,7 +239,7 @@ function App() {
                 </Stack>
 
                 <Box className="portrait-column">
-                  <Box className="portrait-ring">
+                  <Box className="portrait-ring fade-in-up" style={{ animationDelay: '220ms' }}>
                     <Avatar alt="Bryan Torres" src={profilePic} className="hero-avatar" />
                   </Box>
                 </Box>
@@ -238,13 +248,15 @@ function App() {
           </Box>
 
           <Box component="section" id="about" className="content-section">
-            <SectionHeading
-              eyebrow="01"
-              title="About Me"
-              subtitle=""
-            />
+            <Box className="fade-in-up" style={{ animationDelay: '280ms' }}>
+              <SectionHeading
+                eyebrow="01"
+                title="About Me"
+                subtitle=""
+              />
+            </Box>
 
-            <Card className="section-card about-card">
+            <Card className="section-card about-card fade-in-up" style={{ animationDelay: '340ms' }}>
               <CardContent className="about-card-content">
                 <Typography className="card-description">
                 I want to make an impact on the world, whether for students, healthcare personnels, or fellow coders. I'm drawn to building things that actually make someone's day better. Tools that give people back time. I care about work that has a real effect beyond the screen. At the end of the day, I don't just want to write code, I want to build things that matter. 
@@ -256,15 +268,21 @@ function App() {
           </Box>
 
           <Box component="section" id="projects" className="content-section">
-            <SectionHeading
-              eyebrow="02"
-              title="Projects"
-              subtitle="What I'm most proud of!"
-            />
+            <Box className="fade-in-up" style={{ animationDelay: '400ms' }}>
+              <SectionHeading
+                eyebrow="02"
+                title="Projects"
+                subtitle="Featured Projects"
+              />
+            </Box>
 
             <Box className="card-grid projects-grid">
-              {projectCards.map((project) => (
-                <Card key={project.title} className="section-card project-card">
+              {projectCards.map((project, index) => (
+                <Card
+                  key={project.title}
+                  className="section-card project-card fade-in-up"
+                  style={{ animationDelay: `${460 + index * 90}ms` }}
+                >
                   <CardContent className="card-content">
                     <Typography className="card-eyebrow">{project.eyebrow}</Typography>
                     <Typography variant="h5" className="card-title">
@@ -277,6 +295,19 @@ function App() {
                         <Chip key={tag} label={tag} className="info-chip" />
                       ))}
                     </Stack>
+
+                    <Box
+                      component="a"
+                      href={project.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="project-link"
+                    >
+                      <Typography component="span" className="project-link-label">
+                        {project.linkLabel}
+                      </Typography>
+                      <ArrowOutwardRoundedIcon className="project-link-icon" />
+                    </Box>
                   </CardContent>
                 </Card>
               ))}
@@ -284,15 +315,21 @@ function App() {
           </Box>
 
           <Box component="section" id="skills" className="content-section">
-            <SectionHeading
-              eyebrow="03"
-              title="Technical Skills"
-              subtitle="Willing to expand!"
-            />
+            <Box className="fade-in-up" style={{ animationDelay: '560ms' }}>
+              <SectionHeading
+                eyebrow="03"
+                title="Technical Skills"
+                subtitle="Looking forward to expand!"
+              />
+            </Box>
 
             <Box className="card-grid skills-grid">
-              {skillCards.map((skill) => (
-                <Card key={skill.title} className="section-card skill-card">
+              {skillCards.map((skill, index) => (
+                <Card
+                  key={skill.title}
+                  className="section-card skill-card fade-in-up"
+                  style={{ animationDelay: `${620 + index * 90}ms` }}
+                >
                   <CardContent className="card-content">
                     <Typography variant="h5" className="card-title">
                       {skill.title}
@@ -305,15 +342,21 @@ function App() {
           </Box>
 
           <Box component="section" id="experience" className="content-section">
-            <SectionHeading
-              eyebrow="04"
-              title="Experience"
-              subtitle="Professional work experience"
-            />
+            <Box className="fade-in-up" style={{ animationDelay: '720ms' }}>
+              <SectionHeading
+                eyebrow="04"
+                title="Experience"
+                subtitle="Professional work experience"
+              />
+            </Box>
 
             <Stack spacing={2.5} className="experience-stack">
-              {experienceCards.map((experience) => (
-                <Card key={`${experience.role}-${experience.organization}`} className="section-card experience-card">
+              {experienceCards.map((experience, index) => (
+                <Card
+                  key={`${experience.role}-${experience.organization}`}
+                  className="section-card experience-card fade-in-up"
+                  style={{ animationDelay: `${780 + index * 90}ms` }}
+                >
                   <CardContent className="experience-content">
                     <Typography className="experience-period">{experience.period}</Typography>
                     <Typography variant="h5" className="card-title">
