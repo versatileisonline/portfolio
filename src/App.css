@@ -377,6 +377,21 @@
   margin-bottom: 0.85rem;
 }
 
+.company-name {
+  color: var(--text-primary);
+  font-weight: 800;
+}
+
+.experience-paragraphs {
+  margin-top: 0.35rem;
+}
+
+.experience-paragraph {
+  text-indent: 1.35rem;
+  line-height: 1.95;
+  text-align: left;
+}
+
 .scroll-top-button {
   position: fixed !important;
   right: 24px;

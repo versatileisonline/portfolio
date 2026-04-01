@@ -114,16 +114,20 @@ const experienceCards = [
     period: 'Incoming Summer 2026',
     role: 'DevOps Intern',
     organization: 'Expedition Technology',
-    description:
+    paragraphs: [
       'TBD',
+    ],
   },
   {
     period: 'Jun. 2025 - Aug. 2025',
     role: 'Software & DevOps Intern',
     organization: 'Dark Wolf Solutions',
-    description:
-      'Over the summer I worked at Dark Wolf Solutions as a Software & DevOps Intern, working on Project Syndicate. Working at Dark Wolf helped me grow professionally by showing me what it looks like to work on a real engineering team where communication, collaboration and accountability mattered every day. I worked closely with two other interns, and being able to share ideas, solve problems together, and learn from each other. That is what made the experience valuable and special. We operated in an agile environment with daily standups, biweekly sprints, live code reviews and using GitLab for ticketing, which helped me become more comfortable discussing questions and progress. We were guided under fellow engineers, giving us insight into how professional software teams organize, mentor, and build at scale. On the technical end, we helped create the user interface for Syndicate, a pipeline dashboard designed across pipeline, application and organization level vies. We built and deployed a full containzered system using PostgreSQL, a Next.js frontend, a FastAPI backend, and Dex for OAuth, with deployments running through GKE. Overall, the internship strengthed both my technical foundation and my confidence in working as part of a collaborative engineering team.'
-      + '',
+    paragraphs: [
+      'Over the summer, I worked at Dark Wolf Solutions as a Software & DevOps Intern on Project Syndicate. The experience showed me what it looks like to contribute on a real engineering team where communication, collaboration, and accountability matter every day.',
+      'I worked closely with two other interns, and that shared problem-solving made the internship especially valuable. We operated in an agile environment with daily standups, biweekly sprints, live code reviews, and GitLab ticketing, which helped me get much more comfortable discussing progress, blockers, and technical decisions.',
+      'We were guided by experienced engineers, which gave me a clearer view into how professional software teams organize work, mentor junior developers, and build at scale. That mentorship helped me grow not only technically, but also in the way I approached teamwork and ownership.',
+      'On the technical side, we helped create the user interface for Syndicate, a pipeline dashboard designed across pipeline, application, and organization-level views. We built and deployed a containerized system using PostgreSQL, a Next.js frontend, a FastAPI backend, and Dex for OAuth, with deployments running through GKE. Overall, the internship strengthened both my technical foundation and my confidence in working as part of a collaborative engineering team.',
+    ],
   },
 ]
 
@@ -362,8 +366,16 @@ function App() {
                     <Typography variant="h5" className="card-title">
                       {experience.role}
                     </Typography>
-                    <Typography className="experience-organization">{experience.organization}</Typography>
-                    <Typography className="card-description">{experience.description}</Typography>
+                    <Typography className="experience-organization">
+                      <Box component="span" className="company-name">{experience.organization}</Box>
+                    </Typography>
+                    <Stack spacing={2} className="experience-paragraphs">
+                      {experience.paragraphs.map((paragraph) => (
+                        <Typography key={paragraph} className="card-description experience-paragraph">
+                          {paragraph}
+                        </Typography>
+                      ))}
+                    </Stack>
                   </CardContent>
                 </Card>
               ))}
