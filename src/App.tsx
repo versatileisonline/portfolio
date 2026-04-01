@@ -58,25 +58,25 @@ const contactLinks = [
 
 const projectCards = [
   {
-    eyebrow: 'Featured Project',
-    title: 'strongest build here',
+    eyebrow: 'Most recent',
+    title: 'ML For Healthcare: Melanoma Classification',
     description:
-      'good project',
-    tags: ['Project title', 'Short summary', 'Tech stack'],
+      'Built a machine leraning pipeline for melanoma image classification, focusing on early skin cancer detection from images.',
+    tags: ['Melanoma Detection', 'Medical Imaging', 'Python / Jupyter Notebook'],
   },
   {
-    eyebrow: 'Case Study',
-    title: 'Highlight impact and process',
+    eyebrow: 'academia work',
+    title: 'M.A.R.C.O - Multi-Agent Reactive Code Optimizer',
     description:
-      'second project',
-    tags: ['Challenge', 'Approach', 'Outcome'],
+      'Built as part of my undergraduate research, MARCO is an agentic AI framework designed for automated, reliable kernel generation and optimization. Proving that LLMs, when equipped with specialized domain guidance, can reliably automate the development of complex GPU kernels with optimal performance and high efficiency.',
+    tags: ['High-performance Computing (HPC)', 'Agentic AI Framework', 'Benchmarking'],
   },
   {
     eyebrow: 'In Progress',
-    title: 'Reserve a space for current work',
+    title: 'Canvas+',
     description:
-      'stats/machine learning project',
-    tags: ['Current work', 'Iteration', 'Next steps'],
+      'A Chromium-based browser extension that reimagines the Canvas dashboard with a more centralized course homepage. This project focuses on improving how students manage assignemnts, notes and academic focus by creating a cleaner and more useful experience on top of the existing LMS.',
+    tags: ['Browser Extension', 'UX Iteration', 'Student Productivity'],
   },
 ]
 
@@ -90,26 +90,26 @@ const skillCards = [
     description: 'Unix/Linux cmds, GKE, Docker, Git, GitHub/GitLab, Next.js, React, MUI, FastAPI',
   },
   {
-    title: 'Strength Areas',
-    description: 'blank',
+    title: 'Certifications',
+    description: 'None as of yet',
   },
 ]
 
 const experienceCards = [
+  {
+    period: 'Incoming Summer 2026',
+    role: 'DevOps Intern',
+    organization: 'Expedition Technology',
+    description:
+      'TBD',
+  },
   {
     period: 'Jun. 2025 - Aug. 2025',
     role: 'Software & DevOps Intern',
     organization: 'Dark Wolf Solutions',
     description:
       'Over the summer I worked at Dark Wolf Solutions as a Software & DevOps Intern, working on Project Syndicate.'
-      + '',
-  },
-  {
-    period: 'Start Date - End Date',
-    role: 'Second Role or Leadership Position',
-    organization: 'School, Internship, Club, or Volunteer Work',
-    description:
-      'school',
+      + ' helo',
   },
 ]
 
@@ -221,7 +221,7 @@ function App() {
             <SectionHeading
               eyebrow="02"
               title="Projects"
-              subtitle="Blank"
+              subtitle="What I'm most proud of!"
             />
 
             <Box className="card-grid projects-grid">
@@ -249,7 +249,7 @@ function App() {
             <SectionHeading
               eyebrow="03"
               title="Technical Skills"
-              subtitle="Fill in"
+              subtitle="Willing to expand!"
             />
 
             <Box className="card-grid skills-grid">
@@ -270,7 +270,7 @@ function App() {
             <SectionHeading
               eyebrow="04"
               title="Experience"
-              subtitle="Overall experience"
+              subtitle="Professional work experience"
             />
 
             <Stack spacing={2.5} className="experience-stack">
