@@ -19,6 +19,8 @@ import DescriptionRoundedIcon from '@mui/icons-material/DescriptionRounded'
 import ArrowOutwardRoundedIcon from '@mui/icons-material/ArrowOutwardRounded'
 import profilePic from './assets/IMG_9088.jpg'
 
+import resume from './assets/resume_bryan01.pdf'
+
 const navItems = [
   { label: 'Home', id: 'home' },
   { label: 'About Me', id: 'about' },
@@ -30,13 +32,13 @@ const navItems = [
 const contactLinks = [
   {
     label: 'Email',
-    value: 'your.email@example.com',
-    href: 'mailto:your.email@example.com',
+    value: 'bryantorres@vt.edu',
+    href: 'mailto:bryantorres@vt.edu',
     icon: <EmailRoundedIcon />,
   },
   {
     label: 'LinkedIn',
-    value: 'linkedin.com/in/your-profile',
+    value: 'linkedin.com/in/bryantorres-cs',
     href: 'https://www.linkedin.com/in/bryantorres-cs',
     icon: <LinkedInIcon />,
   },
@@ -48,8 +50,8 @@ const contactLinks = [
   },
   {
     label: 'Resume',
-    value: 'PDF or link',
-    href: '#',
+    value: 'View resume PDF',
+    href: resume,
     icon: <DescriptionRoundedIcon />,
   },
 ]
@@ -80,12 +82,12 @@ const projectCards = [
 
 const skillCards = [
   {
-    title: 'Languages',
-    description: 'programming langauges',
+    title: 'Most Proficient Languages',
+    description: 'Python, C, C#, Java',
   },
   {
     title: 'Frameworks & Tools',
-    description: 'Devops tools',
+    description: 'Unix/Linux cmds, GKE, Docker, Git, GitHub/GitLab, Next.js, React, MUI, FastAPI',
   },
   {
     title: 'Strength Areas',
@@ -95,11 +97,12 @@ const skillCards = [
 
 const experienceCards = [
   {
-    period: 'Start Date - End Date',
-    role: 'Role Title',
-    organization: 'Company, Team, or Organization',
+    period: 'Jun. 2025 - Aug. 2025',
+    role: 'Software & DevOps Intern',
+    organization: 'Dark Wolf Solutions',
     description:
-      'company and stuff',
+      'Over the summer I worked at Dark Wolf Solutions as a Software & DevOps Intern, working on Project Syndicate.'
+      + '',
   },
   {
     period: 'Start Date - End Date',
@@ -127,7 +130,7 @@ function SectionHeading(props: { eyebrow: string; title: string; subtitle: strin
 function App() {
   return (
     <Box className="app-shell">
-      <AppBar position="sticky" elevation={0} className="topbar">
+      <AppBar position="sticky" elevation={0} className="topbar" sx={{bgcolor:'#000000ff'}}>
         <Toolbar className="topbar-toolbar">
           <Typography component="a" href="#home" className="brand-mark">
             BT
@@ -156,16 +159,18 @@ function App() {
               <Box className="hero-grid">
                 <Stack spacing={3.5} className="hero-copy">
                   <Box>
-                    <Typography className="hero-eyebrow">Portfolio</Typography>
+                    {/* <Typography className="hero-eyebrow">Portfolio</Typography> */}
                     <Typography variant="h1" className="hero-title">
                       Bryan Torres
                     </Typography>
                   </Box>
 
                   <Typography className="hero-subtitle">
-                    heheh hello
+                    <Box component="span" className="hero-subtitle-strong">
+                      Hey, I&apos;m <Box component="span" className="hero-name-highlight">Bryan Torres</Box>.
+                    </Box>{' '}
+                    Here, you can check out what I&apos;m working on. I do my best to contribute to impactful projects.
                   </Typography>
-
                   <Box className="contact-grid">
                     {contactLinks.map((item) => (
                       <Box
@@ -175,11 +180,6 @@ function App() {
                         target={item.href.startsWith('http') ? '_blank' : undefined}
                         rel={item.href.startsWith('http') ? 'noreferrer' : undefined}
                         className="contact-card"
-                        onClick={(event) => {
-                          if (item.href === '#') {
-                            event.preventDefault()
-                          }
-                        }}
                       >
                         <Box className="contact-icon">{item.icon}</Box>
                         <Box className="contact-copy">
@@ -205,11 +205,15 @@ function App() {
             <SectionHeading
               eyebrow="01"
               title="About Me"
-              subtitle="Blank"
+              subtitle=""
             />
 
             <Card className="section-card about-card">
-              <CardContent className="about-card-content" />
+              <CardContent className="about-card-content">
+                <Typography className="card-description">
+                I want to make an impact on the world, whether for students, healthcare personnels, or fellow coders. 
+                </Typography>
+              </CardContent>
             </Card>
           </Box>
 

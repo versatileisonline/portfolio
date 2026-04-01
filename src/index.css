@@ -1,18 +1,23 @@
 :root {
-  font-family: 'Avenir Next', 'Segoe UI', sans-serif;
+  /* Font boilerplate: replace these with your preferred font stack. */
+  --font-body: 'Avenir Next', 'Segoe UI', sans-serif; /* Add your own font here */
+  --font-display: 'Avenir Next', 'Segoe UI', sans-serif, 'Po'; /* Add your own font here */
+  font-family: var(--font-body);
   line-height: 1.5;
   font-weight: 400;
   color: #f4f5f7;
-  background-color: #24262a;
+  background-color: #000000;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  --bg-primary: #24262a;
-  --surface: #17181b;
+  --bg-primary: #000000;
+  --surface: #101114;
+  --panel-bg: #111317;
+  --panel-bg-hover: #171b20;
   --text-primary: #f4f5f7;
   --text-secondary: #b9bcc3;
-  --accent: #a7d4c2;
+  --accent: #5caaff;
 }
 
 html {
