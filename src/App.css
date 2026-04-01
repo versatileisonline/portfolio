@@ -370,7 +370,8 @@
 }
 
 .experience-stack {
-  max-width: 900px;
+  width: 100%;
+  max-width: none;
 }
 
 .experience-organization {
