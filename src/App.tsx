@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import './App.css'
 import {
   AppBar,
@@ -8,6 +9,8 @@ import {
   CardContent,
   Chip,
   Container,
+  Fab,
+  IconButton,
   Stack,
   Toolbar,
   Typography,
@@ -17,6 +20,9 @@ import GitHubIcon from '@mui/icons-material/GitHub'
 import LinkedInIcon from '@mui/icons-material/LinkedIn'
 import DescriptionRoundedIcon from '@mui/icons-material/DescriptionRounded'
 import ArrowOutwardRoundedIcon from '@mui/icons-material/ArrowOutwardRounded'
+import ArrowUpwardRoundedIcon from '@mui/icons-material/ArrowUpwardRounded'
+import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded'
+import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded'
 import profilePic from './assets/IMG_9088.jpg'
 
 import resume from './assets/resume_bryan01.pdf'
@@ -109,7 +115,7 @@ const experienceCards = [
     organization: 'Dark Wolf Solutions',
     description:
       'Over the summer I worked at Dark Wolf Solutions as a Software & DevOps Intern, working on Project Syndicate.'
-      + ' helo',
+      + '',
   },
 ]
 
@@ -128,26 +134,58 @@ function SectionHeading(props: { eyebrow: string; title: string; subtitle: strin
 }
 
 function App() {
+  const [isDarkMode, setIsDarkMode] = useState(true)
+  const [showScrollTop, setShowScrollTop] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 320)
+    }
+
+    handleScroll()
+    window.addEventListener('scroll', handleScroll)
+
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  const handleThemeToggle = () => {
+    setIsDarkMode((currentMode) => !currentMode)
+  }
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
   return (
-    <Box className="app-shell">
+    <Box className={`app-shell ${isDarkMode ? 'theme-dark' : 'theme-light'}`}>
       <AppBar position="sticky" elevation={0} className="topbar" sx={{bgcolor:'#000000ff'}}>
         <Toolbar className="topbar-toolbar">
           <Box component="a" href="#home" className="brand-mark">
             BT
           </Box>
 
-          <Stack direction="row" spacing={1} className="topbar-links">
-            {navItems.map((item) => (
-              <Button
-                key={item.id}
-                component="a"
-                href={`#${item.id}`}
-                color="inherit"
-                className="topbar-button"
-              >
-                {item.label}
-              </Button>
-            ))}
+          <Stack direction="row" spacing={1.5} className="topbar-actions">
+            <Stack direction="row" spacing={1} className="topbar-links">
+              {navItems.map((item) => (
+                <Button
+                  key={item.id}
+                  component="a"
+                  href={`#${item.id}`}
+                  color="inherit"
+                  className="topbar-button"
+                >
+                  {item.label}
+                </Button>
+              ))}
+            </Stack>
+
+            <IconButton
+              aria-label={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+              onClick={handleThemeToggle}
+              className="theme-toggle"
+            >
+              {isDarkMode ? <LightModeRoundedIcon /> : <DarkModeRoundedIcon />}
+            </IconButton>
           </Stack>
         </Toolbar>
       </AppBar>
@@ -290,6 +328,16 @@ function App() {
           </Box>
         </Container>
       </Box>
+
+      {showScrollTop ? (
+        <Fab
+          aria-label="Scroll back to top"
+          className="scroll-top-button"
+          onClick={scrollToTop}
+        >
+          <ArrowUpwardRoundedIcon />
+        </Fab>
+      ) : null}
     </Box>
   )
 }

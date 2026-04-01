@@ -56,6 +56,7 @@ body {
   min-height: 100vh;
   background: var(--bg-primary);
   font-family: var(--font-body);
+  color: var(--text-primary);
 }
 
 button,
@@ -82,7 +83,9 @@ a {
 .MuiChip-root,
 .MuiCard-root,
 .MuiToolbar-root,
-.MuiAppBar-root {
+.MuiAppBar-root,
+.MuiFab-root,
+.MuiIconButton-root {
   font-family: var(--font-body) !important;
 }
 

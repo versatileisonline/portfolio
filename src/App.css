@@ -4,6 +4,21 @@
     radial-gradient(circle at top right, rgba(92, 170, 255, 0.16), transparent 24%),
     linear-gradient(180deg, #050608 0%, #000000 100%);
   color: var(--text-primary);
+  transition:
+    background 220ms ease,
+    color 220ms ease;
+}
+
+.app-shell.theme-light {
+  --bg-primary: #eef1f5;
+  --surface: #dfe4ea;
+  --panel-bg: #e4e8ee;
+  --panel-bg-hover: #d9dee6;
+  --text-primary: #101114;
+  --text-secondary: #30353d;
+  background:
+    radial-gradient(circle at top right, rgba(92, 170, 255, 0.12), transparent 24%),
+    linear-gradient(180deg, #f6f7fa 0%, #eef1f5 100%);
 }
 
 .topbar {
@@ -45,6 +60,10 @@
   justify-content: flex-end;
 }
 
+.topbar-actions {
+  align-items: center;
+}
+
 .topbar-button {
   color: rgba(244, 245, 247, 0.9);
   border-radius: 999px;
@@ -58,6 +77,18 @@
 
 .topbar-button:hover {
   background: rgba(255, 255, 255, 0.08);
+}
+
+.theme-toggle {
+  width: 44px;
+  height: 44px;
+  color: #f4f5f7 !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.12) !important;
 }
 
 .page-content {
@@ -240,6 +271,15 @@
 
 .about-card-content {
   min-height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.about-card-content .card-description {
+  max-width: 640px;
+  margin: 0 auto;
 }
 
 .card-grid {
@@ -273,8 +313,13 @@
 
 .info-chip {
   background: rgba(92, 170, 255, 0.14);
-  color: var(--text-primary);
+  color: var(--text-primary) !important;
   border: 1px solid rgba(92, 170, 255, 0.24);
+}
+
+.info-chip .MuiChip-label {
+  color: var(--text-primary) !important;
+  font-weight: 600;
 }
 
 .experience-stack {
@@ -283,6 +328,53 @@
 
 .experience-organization {
   margin-bottom: 0.85rem;
+}
+
+.scroll-top-button {
+  position: fixed !important;
+  right: 24px;
+  bottom: 24px;
+  z-index: 1200;
+  color: #0f1114 !important;
+  background: var(--brand-accent) !important;
+  box-shadow:
+    0 12px 24px rgba(0, 0, 0, 0.34),
+    0 18px 42px rgba(240, 139, 76, 0.22) !important;
+}
+
+.scroll-top-button:hover {
+  background: var(--brand-accent-strong) !important;
+}
+
+.theme-light {
+  color: var(--text-primary);
+}
+
+.theme-light .hero-panel,
+.theme-light .section-card,
+.theme-light .contact-card {
+  background: var(--panel-bg) !important;
+  border-color: rgba(17, 19, 23, 0.08);
+}
+
+.theme-light .contact-card:hover {
+  border-color: rgba(92, 170, 255, 0.34);
+}
+
+.theme-light .card-eyebrow,
+.theme-light .section-eyebrow,
+.theme-light .experience-period,
+.theme-light .hero-name-highlight,
+.theme-light .contact-icon,
+.theme-light .contact-arrow {
+  color: var(--accent);
+}
+
+.theme-light .section-subtitle,
+.theme-light .card-description,
+.theme-light .experience-organization,
+.theme-light .contact-value {
+  color: var(--text-secondary);
 }
 
 @media (max-width: 900px) {
@@ -302,6 +394,10 @@
     width: calc(100% - 24px);
     padding: 0.9rem 0;
     align-items: flex-start;
+  }
+
+  .topbar-actions {
+    align-items: flex-end;
   }
 
   .contact-grid {
