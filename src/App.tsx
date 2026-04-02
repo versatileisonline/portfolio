@@ -66,7 +66,7 @@ const contactLinks = [
 
 const projectCards = [
   {
-    eyebrow: 'IN PROGRESS',
+    eyebrow: 'In progress: Jan. 2026 -',
     title: 'ML For Healthcare: Melanoma Classification',
     href: melanoma,
     linkLabel: 'View project',
@@ -75,7 +75,7 @@ const projectCards = [
     tags: ['Melanoma Detection', 'Medical Imaging', 'Python / Jupyter Notebook'],
   },
   {
-    eyebrow: 'academia work',
+    eyebrow: 'Academia Work: Oct. 2024 to Jan 2026',
     title: 'M.A.R.C.O - Multi-Agent Reactive Code Optimizer',
     href: 'https://arxiv.org/pdf/2505.03906',
     linkLabel: 'View project',
@@ -84,7 +84,7 @@ const projectCards = [
     tags: ['High-performance Computing (HPC)', 'Agentic AI Framework', 'Benchmarking'],
   },
   {
-    eyebrow: 'Most recent',
+    eyebrow: 'Most Recent: Jan. 2026 -',
     title: 'Canvas+',
     href: 'https://github.com/versatileisonline/CanvasPlus',
     linkLabel: 'View project',
