@@ -181,7 +181,7 @@ const projectCards: ProjectCard[] = [
       'A Chromium-based browser extension that reimagines the Canvas dashboard with a more centralized course homepage.',
     tags: ['Browser Extension', 'UX Iteration', 'Student Productivity'],
     details: [
-      'Canvas+ comes from wanting a student-facing tool that genuinely feels more useful day to day. The goal was to create a cleaner, more centralized course experience on top of an LMS that often feels fragmented. We surveyed Virginia Tech students from various colleges, providing further insight on how wew should design our product.',
+      'Canvas+ comes from wanting a student-facing tool that genuinely feels more useful day to day. The goal was to create a cleaner, more centralized course experience on top of an LMS that often feels fragmented. We surveyed Virginia Tech students from various colleges, providing further insight on how we should design our product.',
       'This project leans more into product thinking and interface design. I have been using it to explore how frontend polish, usability, and small workflow improvements can have a real impact on how students stay organized.',
     ],
     imageLabel: 'Canvas+ product visual',
