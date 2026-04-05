@@ -14,7 +14,7 @@ import {
   Stack,
   Toolbar,
   Typography,
-} from '@mui/material'
+} from '@mui/material' 
 import EmailRoundedIcon from '@mui/icons-material/EmailRounded'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import LinkedInIcon from '@mui/icons-material/LinkedIn'
@@ -24,23 +24,35 @@ import ArrowUpwardRoundedIcon from '@mui/icons-material/ArrowUpwardRounded'
 import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded'
 import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded'
 import WestRoundedIcon from '@mui/icons-material/WestRounded'
-import profilePic from './assets/IMG_9088.jpg'
-import aboutPhotoOne from './assets/photos/IMG_3927.jpg'
-import aboutPhotoTwo from './assets/photos/IMG_8620.jpeg'
-import aboutPhotoThree from './assets/photos/IMG_8628.jpg'
-import aboutPhotoFour from './assets/photos/IMG_3652.jpeg'
-import aboutPhotoFive from './assets/photos/IMG_3696.jpg'
-import aboutPhotoSix from './assets/photos/IMG_4813.jpeg'
+import TerminalRoundedIcon from '@mui/icons-material/TerminalRounded'
+import SourceRoundedIcon from '@mui/icons-material/SourceRounded'
+import LayersRoundedIcon from '@mui/icons-material/LayersRounded'
+import StorageRoundedIcon from '@mui/icons-material/StorageRounded'
+import CloudQueueRoundedIcon from '@mui/icons-material/CloudQueueRounded'
+import WebRoundedIcon from '@mui/icons-material/WebRounded'
+import AccountTreeRoundedIcon from '@mui/icons-material/AccountTreeRounded'
+import ApiRoundedIcon from '@mui/icons-material/ApiRounded'
+import profilePic from './assets/photos/compressed_images/IMG_9088.jpg'
+import aboutPhotoOne from './assets/photos/compressed_images/IMG_3927.jpg'
+import aboutPhotoTwo from './assets/photos/compressed_images/IMG_8620.jpeg'
+import aboutPhotoThree from './assets/photos/compressed_images/IMG_8628.jpg'
+import aboutPhotoFour from './assets/photos/compressed_images/IMG_3652.jpeg'
+import aboutPhotoFive from './assets/photos/compressed_images/IMG_3696.jpg'
+import aboutPhotoSix from './assets/photos/compressed_images/IMG_2092.jpg'
+import aboutPhotoSeven from './assets/photos/compressed_images/IMG_4213.jpeg'
+import aboutPhotoEight from './assets/photos/compressed_images/IMG_6994.JPEG.jpeg'
+
 import melanomaVisual from './assets/photos/ml_healthcare.png'
-import marcoVisual from './assets/photos/marco_architecture.png'
+import marcoVisual from './assets/photos/compressed_images/IMG_1671.jpg'
 import canvasVisual from './assets/photos/canvas_plus.png'
 import syndicateVisual from './assets/photos/project_syndicate.png'
-import darkWolfPhoto from './assets/photos/IMG_4204.jpeg'
-import { Link as RouterLink, Route, Routes, useLocation } from 'react-router-dom'
+import darkWolfPhoto from './assets/photos/compressed_images/IMG_4204.jpeg'
+import { Link as RouterLink, Route, Routes, useLocation, useParams } from 'react-router-dom'
 
 import resume from './assets/resume_bryan01.pdf'
 import melanoma from './assets/melanoma_detection.pdf'
 import writingPost from './content/writing/index.md?raw'
+import secondWritingPost from './content/writing/second.md?raw'
 
 type NavRoute = {
   label: string
@@ -71,6 +83,7 @@ type ProjectCard = {
 type SkillCard = {
   title: string
   description: string
+  highlights?: { label: string; icon: ReactNode }[]
 }
 
 type ExperienceCard = {
@@ -80,6 +93,15 @@ type ExperienceCard = {
   paragraphs: string[]
   imageSrc?: string
   imageAlt?: string
+  learnedStack?: { label: string; icon: ReactNode }[]
+}
+
+type BlogPost = {
+  slug: string
+  status: string
+  title: string
+  excerpt: string
+  source: string
 }
 
 const navRoutes: NavRoute[] = [
@@ -188,14 +210,28 @@ const skillCards: SkillCard[] = [
   {
     title: 'Most Proficient Languages',
     description: 'Python, C, C#, Java',
+    // highlights: [
+    //   { label: 'Git', icon: <SourceRoundedIcon /> },
+    //   { label: 'Linux', icon: <TerminalRoundedIcon /> },
+    // ],
   },
   {
     title: 'Frameworks & Tools',
     description: 'Unix/Linux cmds, GKE, Docker, Git, GitHub/GitLab, Next.js, React, MUI, FastAPI',
+    highlights: [
+      { label: 'Docker', icon: <LayersRoundedIcon /> },
+      { label: 'GitLab', icon: <AccountTreeRoundedIcon /> },
+      { label: 'Linux', icon: <TerminalRoundedIcon /> },
+      { label: 'GKE', icon: <CloudQueueRoundedIcon /> },
+    ],
   },
   {
     title: 'Certifications',
-    description: 'None as of yet',
+    description: 'None as of yet, studying for Google Cloud Digital Leader!',
+    // highlights: [
+    //   { label: 'React', icon: <WebRoundedIcon /> },
+    //   { label: 'FastAPI', icon: <ApiRoundedIcon /> },
+    // ],
   },
 ]
 
@@ -218,6 +254,16 @@ const experienceCards: ExperienceCard[] = [
     ],
     imageSrc: darkWolfPhoto,
     imageAlt: 'Bryan Torres at Dark Wolf Solutions',
+    learnedStack: [
+      { label: 'Git', icon: <SourceRoundedIcon /> },
+      { label: 'Linux', icon: <TerminalRoundedIcon /> },
+      { label: 'Docker', icon: <LayersRoundedIcon /> },
+      { label: 'GitLab CI', icon: <AccountTreeRoundedIcon /> },
+      { label: 'PostgreSQL', icon: <StorageRoundedIcon /> },
+      { label: 'FastAPI', icon: <ApiRoundedIcon /> },
+      { label: 'GKE', icon: <CloudQueueRoundedIcon /> },
+      { label: 'React + MUI', icon: <WebRoundedIcon /> },
+    ],
   },
 ]
 
@@ -233,11 +279,16 @@ const beyondCodeInterests = [
 const aboutCollageTiles = [
   {
     src: aboutPhotoOne,
+    alt: 'Bryan Torres outdoors portrait',
+    className: 'about-collage-tile-small',
+  },
+  {
+    src: aboutPhotoTwo,
     alt: 'Bryan Torres outdoors',
     className: 'about-collage-tile-large',
   },
   {
-    src: aboutPhotoTwo,
+    src: aboutPhotoSeven,
     alt: 'Bryan Torres portrait',
     className: 'about-collage-tile-small',
   },
@@ -258,10 +309,32 @@ const aboutCollageTiles = [
   },
   {
     src: aboutPhotoSix,
+    alt: 'Bryan Torres active lifestyle',
+    className: 'about-collage-tile-small',
+  },
+  {
+    src: aboutPhotoEight,
     alt: 'Bryan Torres candid portrait',
     className: 'about-collage-tile-small',
   },
 ] as const
+
+const blogPosts: BlogPost[] = [
+  {
+    slug: 'first-post',
+    status: 'Published',
+    title: 'How to become more effective utilizing AI tools',
+    excerpt: "Tooling with AI",
+    source: writingPost,
+  },
+  {
+    slug: 'second-post',
+    status: 'Draft',
+    title: 'Second Post',
+    excerpt: 'Blah blah... second post stuff.',
+    source: secondWritingPost,
+  },
+]
 
 function SectionHeading(props: {
   eyebrow: string
@@ -404,6 +477,74 @@ function MarkdownArticle(props: { source: string }) {
   }
 
   return <Stack spacing={2.1}>{blocks}</Stack>
+}
+
+function BlogIndexPage() {
+  return (
+    <Stack spacing={4.5}>
+      <PageSummaryCard
+        subtitle="A space for notes, lessons learned, and technical reflections. Each entry lives in its own markdown file, so writing and version control stay simple."
+      />
+
+      <Box className="card-grid writing-grid writing-list-grid">
+        {blogPosts.map((post, index) => (
+          <Card
+            key={post.slug}
+            className="section-card writing-card fade-in-up"
+            style={{ animationDelay: `${160 + index * 90}ms` }}
+          >
+            <CardContent className="card-content writing-card-content">
+              <Typography className="card-eyebrow">{post.status}</Typography>
+              <Typography variant="h5" className="card-title">
+                {post.title}
+              </Typography>
+              <Typography className="card-description">{post.excerpt}</Typography>
+              <Button
+                component={RouterLink}
+                to={`/writing/${post.slug}`}
+                endIcon={<ArrowOutwardRoundedIcon />}
+                className="section-link-button writing-read-button"
+              >
+                Read More
+              </Button>
+            </CardContent>
+          </Card>
+        ))}
+      </Box>
+    </Stack>
+  )
+}
+
+function BlogPostPage() {
+  const { slug } = useParams()
+  const post = blogPosts.find((entry) => entry.slug === slug)
+
+  if (!post) {
+    return (
+      <Card className="section-card fade-in-up page-card markdown-post-card" style={{ animationDelay: '120ms' }}>
+        <CardContent className="page-card-content markdown-post-content">
+          <Typography variant="h3" className="markdown-h2">
+            Post not found
+          </Typography>
+          <Typography className="markdown-paragraph">
+            That markdown post doesn&apos;t exist yet. Add a file and a matching entry to the blog post registry when
+            you&apos;re ready.
+          </Typography>
+        </CardContent>
+      </Card>
+    )
+  }
+
+  return (
+    <Stack spacing={3.2}>
+      <PageSummaryCard subtitle={post.title} />
+      <Card className="section-card fade-in-up page-card markdown-post-card" style={{ animationDelay: '120ms' }}>
+        <CardContent className="page-card-content markdown-post-content">
+          <MarkdownArticle source={post.source} />
+        </CardContent>
+      </Card>
+    </Stack>
+  )
 }
 
 function HomePage() {
@@ -567,6 +708,16 @@ function HomePage() {
                   {skill.title}
                 </Typography>
                 <Typography className="card-description">{skill.description}</Typography>
+                {skill.highlights ? (
+                  <Stack direction="row" spacing={1} useFlexGap flexWrap="wrap" className="icon-badge-row">
+                    {skill.highlights.map((highlight) => (
+                      <Box key={`${skill.title}-${highlight.label}`} className="icon-badge">
+                        <Box className="icon-badge-icon">{highlight.icon}</Box>
+                        <Typography className="icon-badge-label">{highlight.label}</Typography>
+                      </Box>
+                    ))}
+                  </Stack>
+                ) : null}
               </CardContent>
             </Card>
           ))}
@@ -614,6 +765,19 @@ function HomePage() {
                     </Typography>
                   ))}
                 </Stack>
+                {experience.learnedStack ? (
+                  <Box className="experience-stack-panel">
+                    <Typography className="experience-stack-title">Learned Most From:</Typography>
+                    <Stack direction="row" spacing={1} useFlexGap flexWrap="wrap" className="icon-badge-row">
+                      {experience.learnedStack.map((item) => (
+                        <Box key={`${experience.organization}-${item.label}`} className="icon-badge">
+                          <Box className="icon-badge-icon">{item.icon}</Box>
+                          <Typography className="icon-badge-label">{item.label}</Typography>
+                        </Box>
+                      ))}
+                    </Stack>
+                  </Box>
+                ) : null}
               </CardContent>
             </Card>
           ))}
@@ -758,26 +922,17 @@ function ProjectsPage() {
   )
 }
 
-function WritingPage() {
-  return (
-    <Stack spacing={4.5}>
-      <Card className="section-card fade-in-up page-card markdown-post-card" style={{ animationDelay: '120ms' }}>
-        <CardContent className="page-card-content markdown-post-content">
-          <MarkdownArticle source={writingPost} />
-        </CardContent>
-      </Card>
-    </Stack>
-  )
-}
-
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(true)
   const [showScrollTop, setShowScrollTop] = useState(false)
+  const [showFooterBar, setShowFooterBar] = useState(false)
   const location = useLocation()
 
   useEffect(() => {
     const handleScroll = () => {
       setShowScrollTop(window.scrollY > 320)
+      const { scrollTop, scrollHeight, clientHeight } = document.documentElement
+      setShowFooterBar(scrollTop + clientHeight >= scrollHeight - 8)
     }
 
     handleScroll()
@@ -798,6 +953,14 @@ function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
+  const isRouteActive = (route: string) => {
+    if (route === '/') {
+      return location.pathname === '/'
+    }
+
+    return location.pathname === route || location.pathname.startsWith(`${route}/`)
+  }
+
   return (
     <Box className={`app-shell ${isDarkMode ? 'theme-dark' : 'theme-light'}`}>
       <AppBar position="sticky" elevation={0} className="topbar" sx={{ bgcolor: '#000000ff' }}>
@@ -814,7 +977,7 @@ function App() {
                   component={RouterLink}
                   to={item.to}
                   color="inherit"
-                  className={`topbar-button ${location.pathname === item.to ? 'topbar-button-active' : ''}`}
+                  className={`topbar-button ${isRouteActive(item.to) ? 'topbar-button-active' : ''}`}
                 >
                   {item.label}
                 </Button>
@@ -850,10 +1013,17 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/projects" element={<ProjectsPage />} />
-            <Route path="/writing" element={<WritingPage />} />
+            <Route path="/writing" element={<BlogIndexPage />} />
+            <Route path="/writing/:slug" element={<BlogPostPage />} />
           </Routes>
         </Container>
       </Box>
+
+      {showFooterBar ? (
+        <Box className="footer-bar">
+          <Typography className="footer-text">© Copyright 2026 Bryan Torres, All Rights Reserved.</Typography>
+        </Box>
+      ) : null}
 
       {showScrollTop ? (
         <Fab aria-label="Scroll back to top" className="scroll-top-button" onClick={scrollToTop}>

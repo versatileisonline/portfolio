@@ -76,11 +76,13 @@
 }
 
 .topbar-button-active {
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--accent);
+  color: #08111d;
 }
 
 .topbar-button:hover {
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--accent);
+  color: #08111d;
 }
 
 .fade-in-up {
@@ -226,12 +228,19 @@
 
 .contact-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(92, 170, 255, 0.42);
-  background: var(--panel-bg-hover);
+  border-color: var(--accent);
+  background: var(--accent);
   box-shadow:
     0 14px 26px rgba(0, 0, 0, 0.5),
     0 28px 60px rgba(0, 0, 0, 0.36),
     inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.contact-card:hover .contact-label,
+.contact-card:hover .contact-value,
+.contact-card:hover .contact-icon,
+.contact-card:hover .contact-arrow {
+  color: #08111d;
 }
 
 .contact-icon,
@@ -300,9 +309,9 @@
 .back-link-button {
   align-self: flex-start;
   border-radius: 999px !important;
-  border: 1px solid rgba(92, 170, 255, 0.28) !important;
-  background: rgba(92, 170, 255, 0.08) !important;
-  color: var(--text-primary) !important;
+  border: 1px solid var(--accent) !important;
+  background: var(--accent) !important;
+  color: #08111d !important;
   padding: 0.6rem 1rem !important;
   text-transform: none !important;
   font-weight: 700 !important;
@@ -310,7 +319,7 @@
 
 .section-link-button:hover,
 .back-link-button:hover {
-  background: rgba(92, 170, 255, 0.14) !important;
+  background: var(--accent-strong) !important;
 }
 
 .back-link-button {
@@ -385,6 +394,10 @@
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.writing-list-grid {
+  align-items: stretch;
+}
+
 .writing-page-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
@@ -454,6 +467,14 @@
   transform: rotate(3deg) translateY(10px);
 }
 
+.about-collage-grid .about-collage-tile:nth-child(7) {
+  transform: rotate(-6deg) translateY(2px);
+}
+
+.about-collage-grid .about-collage-tile:nth-child(8) {
+  transform: rotate(2deg) translateY(-10px);
+}
+
 .project-detail-media {
   min-height: 260px;
   margin-bottom: 1.4rem;
@@ -472,10 +493,10 @@
 
 .project-detail-image-marco {
   object-fit: contain;
-  width: 78%;
-  height: 78%;
+  width: 62%;
+  height: 62%;
   margin: auto;
-  padding: 0.5rem;
+  padding: 1rem;
   background: #0d0f12;
 }
 
@@ -535,6 +556,16 @@
 
 .page-paragraph {
   text-align: left;
+}
+
+.writing-card-content {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.writing-read-button {
+  margin-top: auto !important;
 }
 
 .markdown-post-card {
@@ -607,6 +638,31 @@
   border-color: rgba(240, 139, 76, 0.2);
 }
 
+.icon-badge-row {
+  margin-top: 1.15rem;
+}
+
+.icon-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.55rem 0.8rem;
+  border-radius: 999px;
+  background: rgba(92, 170, 255, 0.1);
+  border: 1px solid rgba(92, 170, 255, 0.22);
+}
+
+.icon-badge-icon {
+  display: inline-flex;
+  color: var(--accent);
+}
+
+.icon-badge-label {
+  color: var(--text-primary);
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
 .experience-media {
   margin-bottom: 1.25rem;
   border-radius: 22px;
@@ -645,6 +701,40 @@
   text-indent: 1.35rem;
   line-height: 1.95;
   text-align: left;
+}
+
+.experience-stack-panel {
+  margin-top: 1.35rem;
+}
+
+.experience-stack-title {
+  margin-bottom: 0.8rem;
+  color: var(--brand-accent);
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.footer-bar {
+  position: fixed;
+  left: 50%;
+  bottom: 12px;
+  transform: translateX(-50%);
+  z-index: 1200;
+  padding: 0.7rem 1rem;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 10px 24px rgba(0, 0, 0, 0.34),
+    0 18px 42px rgba(0, 0, 0, 0.22);
+}
+
+.footer-text {
+  color: rgba(244, 245, 247, 0.88);
+  font-size: 0.86rem;
+  letter-spacing: 0.02em;
 }
 
 .scroll-top-button {
@@ -696,7 +786,8 @@
 
 .theme-light .section-link-button,
 .theme-light .back-link-button {
-  background: rgba(92, 170, 255, 0.1) !important;
+  background: var(--accent) !important;
+  color: #08111d !important;
 }
 
 .theme-light .about-collage-tile,
@@ -704,9 +795,18 @@
   border-color: rgba(17, 19, 23, 0.08);
 }
 
+.theme-light .icon-badge {
+  background: rgba(92, 170, 255, 0.14);
+  border-color: rgba(92, 170, 255, 0.2);
+}
+
 .theme-light .markdown-code-block {
   background: rgba(17, 19, 23, 0.04);
   border-color: rgba(17, 19, 23, 0.08);
+}
+
+.theme-light .footer-bar {
+  background: rgba(16, 17, 20, 0.9);
 }
 
 @keyframes fadeInUp {
@@ -797,6 +897,11 @@
 
   .project-detail-media {
     min-height: 210px;
+  }
+
+  .project-detail-image-marco {
+    width: 78%;
+    height: 78%;
   }
 
   .hero-avatar {
