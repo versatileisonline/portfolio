@@ -240,7 +240,7 @@ const experienceCards: ExperienceCard[] = [
     period: 'Incoming Summer 2026',
     role: 'DevOps Intern',
     organization: 'Expedition Technology',
-    paragraphs: ['TBD'],
+    paragraphs: ['Over the summer, I worked on a Dataset Diversity proble for large-scale GEOINT datasets.'],
   },
   {
     period: 'Jun. 2025 - Aug. 2025',
