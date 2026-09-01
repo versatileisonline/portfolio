@@ -74,8 +74,8 @@ type ProjectCard = {
   description: string
   tags: string[]
   details: string[]
-  imageLabel: string
-  imageSrc: string
+  imageLabel?: string
+  imageSrc?: string
   featuredOnHome?: boolean
   imageClassName?: string
 }
@@ -139,6 +139,20 @@ const contactLinks: ContactLink[] = [
 ]
 
 const projectCards: ProjectCard[] = [
+  {
+    eyebrow: 'Summer 2026 Internship Project',
+    title: 'TDS: Dataset Diversity',
+    description:
+      'Built a FastAPI-backed diversity score that helps ML engineers assess the robustness of curated GEOINT training datasets for computer-vision models.',
+    tags: ['FastAPI', 'Computer Vision', 'GEOINT', 'Dataset Diversity', 'Shannon Entropy'],
+    details: [
+      'At Expedition Technology, I worked in Training Data Storefront (TDS), where machine learning engineers curate annotated NITF/GEOINT observations for computer-vision models. I built an API endpoint that turns dataset diversity into a clear, normalized Shannon entropy score from 0.0 to 1.0, helping users recognize when a curated dataset is well-balanced or narrowly distributed.',
+      'The score brings together four research-driven axes: geographic, illumination, time, and image quality. Geography is weighted most heavily because it introduces the strongest domain shift, with coverage measured across biome, continent, settlement type, and country distribution. The time axis considers month evenness, gaps across the dataset interval, time of day, and season.',
+      'The endpoint returns the overall score alongside nested component distributions so the TDS interface can pair a simple summary with explanatory visualizations. The goal is to make diversity easier to act on before model training, supporting more robust training data and better generalization beyond the conditions a model has already seen.',
+    ],
+    imageLabel: 'TDS dataset diversity visualization',
+    featuredOnHome: true,
+  },
   {
     eyebrow: 'In progress: Jan. 2026 -',
     title: 'ML For Healthcare: Melanoma Classification',
@@ -237,10 +251,21 @@ const skillCards: SkillCard[] = [
 
 const experienceCards: ExperienceCard[] = [
   {
-    period: 'Incoming Summer 2026',
-    role: 'DevOps Intern',
+    period: 'Summer 2026',
+    role: 'Software Engineering Intern',
     organization: 'Expedition Technology',
-    paragraphs: ['Over the summer, I worked on a Dataset Diversity proble for large-scale GEOINT datasets.'],
+    paragraphs: [
+      'At Expedition Technology, I worked on Training Data Storefront (TDS), a platform where ML engineers curate annotated GEOINT observations for computer-vision training datasets. My work focused on making the diversity of those datasets easier to understand before training begins.',
+      'I created a FastAPI endpoint that calculates a normalized Shannon entropy diversity score from 0.0 to 1.0 and returns the nested distributions behind it. The score combines geographic, illumination, time, and image-quality signals, with geographic variation prioritized because it creates the strongest domain shift for model generalization.',
+      'On the frontend, the endpoint supported clear, chart-driven explanations of a dataset’s composition so users could move from a single diversity score to the underlying distributions that need attention.',
+    ],
+    learnedStack: [
+      { label: 'FastAPI', icon: <ApiRoundedIcon /> },
+      { label: 'TypeScript + Vite', icon: <WebRoundedIcon /> },
+      { label: 'Chart.js', icon: <WebRoundedIcon /> },
+      { label: 'Mock Service Worker', icon: <ApiRoundedIcon /> },
+      { label: 'GEOINT Data', icon: <StorageRoundedIcon /> },
+    ],
   },
   {
     period: 'Jun. 2025 - Aug. 2025',
@@ -875,14 +900,16 @@ function ProjectsPage() {
             style={{ animationDelay: `${160 + index * 90}ms` }}
           >
             <CardContent className="page-card-content">
-              <Box className="project-detail-media">
-                <Box
-                  component="img"
-                  src={project.imageSrc}
-                  alt={project.imageLabel}
-                  className={`project-detail-image ${project.imageClassName ?? ''}`}
-                />
-              </Box>
+              {project.imageSrc ? (
+                <Box className="project-detail-media">
+                  <Box
+                    component="img"
+                    src={project.imageSrc}
+                    alt={project.imageLabel ?? project.title}
+                    className={`project-detail-image ${project.imageClassName ?? ''}`}
+                  />
+                </Box>
+              ) : null}
               <Typography className="card-eyebrow">{project.eyebrow}</Typography>
               <Typography variant="h4" className="card-title">
                 {project.title}
