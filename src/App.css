@@ -113,6 +113,10 @@
   scroll-margin-top: 104px;
 }
 
+#tds-dataset-diversity {
+  scroll-margin-top: 104px;
+}
+
 .hero-section {
   padding: 1.5rem 0 3rem;
 }
@@ -369,23 +373,16 @@
   padding: clamp(0.5rem, 2vw, 1.5rem) 0;
 }
 
-.projects-page-intro .page-title {
-  color: var(--accent);
-  font-size: clamp(2.4rem, 5vw, 4.25rem);
-  line-height: 1.04;
+.projects-page-title {
+  max-width: 900px;
+  margin: 0 !important;
+  font-size: 2.125rem !important;
+  line-height: 1.2 !important;
 }
 
-.about-card-content {
-  min-height: 180px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-.about-card-content .card-description {
+.about-home-copy {
   max-width: 640px;
-  margin: 0 auto;
+  padding: 0.35rem 0;
 }
 
 .card-grid {

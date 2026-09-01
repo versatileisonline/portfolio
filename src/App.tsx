@@ -358,7 +358,7 @@ const blogPosts: BlogPost[] = [
 function SectionHeading(props: {
   eyebrow: string
   title: string
-  subtitle: string
+  subtitle?: string
   action?: ReactNode
 }) {
   const { eyebrow, title, subtitle, action } = props
@@ -369,7 +369,7 @@ function SectionHeading(props: {
       <Typography variant="h2" className="section-title">
         {title}
       </Typography>
-      <Typography className="section-subtitle">{subtitle}</Typography>
+      {subtitle ? <Typography className="section-subtitle">{subtitle}</Typography> : null}
       {action ? <Box className="section-action-row">{action}</Box> : null}
     </Stack>
   )
@@ -623,7 +623,6 @@ function HomePage() {
           <SectionHeading
             eyebrow="01"
             title="About Me"
-            subtitle="A short look at what motivates me."
             action={
               <Button
                 component={RouterLink}
@@ -637,14 +636,12 @@ function HomePage() {
           />
         </Box>
 
-        <Card className="section-card about-card fade-in-up" style={{ animationDelay: '340ms' }}>
-          <CardContent className="about-card-content">
-            <Typography className="card-description">
-              I want to make an impact on the world, whether for students, healthcare personnel, or fellow coders. I&apos;m
-              drawn to building things that make someone&apos;s day better and give people back time.
-            </Typography>
-          </CardContent>
-        </Card>
+        <Box className="about-home-copy fade-in-up" style={{ animationDelay: '340ms' }}>
+          <Typography className="card-description">
+            I want to make an impact on the world, whether for students, healthcare personnel, or fellow coders. I&apos;m
+            drawn to building things that make someone&apos;s day better and give people back time.
+          </Typography>
+        </Box>
       </Box>
 
       <Box component="section" id="projects" className="content-section">
@@ -885,7 +882,7 @@ function ProjectsPage() {
   return (
     <Stack spacing={4.5}>
       <Box className="projects-page-intro fade-in-up" style={{ animationDelay: '80ms' }}>
-        <Typography variant="h1" className="page-title">
+        <Typography variant="h4" className="card-title projects-page-title">
           A deeper look into the work, decisions, and technical direction behind the projects I want to highlight.
         </Typography>
       </Box>
