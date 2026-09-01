@@ -69,6 +69,7 @@ type ContactLink = {
 type ProjectCard = {
   eyebrow: string
   title: string
+  to?: string
   href?: string
   linkLabel?: string
   description: string
@@ -108,7 +109,6 @@ const navRoutes: NavRoute[] = [
   { label: 'Home', to: '/' },
   { label: 'About', to: '/about' },
   { label: 'Projects', to: '/projects' },
-  { label: 'Writing', to: '/writing' },
 ]
 
 const contactLinks: ContactLink[] = [
@@ -142,6 +142,8 @@ const projectCards: ProjectCard[] = [
   {
     eyebrow: 'Summer 2026 Internship Project',
     title: 'TDS: Dataset Diversity',
+    to: '/projects#tds-dataset-diversity',
+    linkLabel: 'Read More',
     description:
       'Built a FastAPI-backed diversity score that helps ML engineers assess the robustness of curated GEOINT training datasets for computer-vision models.',
     tags: ['FastAPI', 'Computer Vision', 'GEOINT', 'Dataset Diversity', 'Shannon Entropy'],
@@ -170,6 +172,22 @@ const projectCards: ProjectCard[] = [
     featuredOnHome: true,
   },
   {
+    eyebrow: 'Most Recent: Jan. 2026 -',
+    title: 'Canvas+',
+    href: 'https://github.com/versatileisonline/CanvasPlus',
+    linkLabel: 'View project',
+    description:
+      'A Chromium-based browser extension that reimagines the Canvas dashboard with a more centralized course homepage.',
+    tags: ['Browser Extension', 'UX Iteration', 'Student Productivity'],
+    details: [
+      'Canvas+ comes from wanting a student-facing tool that genuinely feels more useful day to day. The goal was to create a cleaner, more centralized course experience on top of an LMS that often feels fragmented. We surveyed Virginia Tech students from various colleges, providing further insight on how we should design our product.',
+      'This project leans more into product thinking and interface design. I have been using it to explore how frontend polish, usability, and small workflow improvements can have a real impact on how students stay organized.',
+    ],
+    imageLabel: 'Canvas+ product visual',
+    imageSrc: canvasVisual,
+    featuredOnHome: true,
+  },
+  {
     eyebrow: 'Academia Work: Oct. 2024 to Jan. 2026',
     title: 'M.A.R.C.O - Multi-Agent Reactive Code Optimizer',
     href: 'https://arxiv.org/pdf/2505.03906',
@@ -185,22 +203,6 @@ const projectCards: ProjectCard[] = [
     imageSrc: marcoVisual,
     featuredOnHome: true,
     imageClassName: 'project-detail-image-marco',
-  },
-  {
-    eyebrow: 'Most Recent: Jan. 2026 -',
-    title: 'Canvas+',
-    href: 'https://github.com/versatileisonline/CanvasPlus',
-    linkLabel: 'View project',
-    description:
-      'A Chromium-based browser extension that reimagines the Canvas dashboard with a more centralized course homepage.',
-    tags: ['Browser Extension', 'UX Iteration', 'Student Productivity'],
-    details: [
-      'Canvas+ comes from wanting a student-facing tool that genuinely feels more useful day to day. The goal was to create a cleaner, more centralized course experience on top of an LMS that often feels fragmented. We surveyed Virginia Tech students from various colleges, providing further insight on how we should design our product.',
-      'This project leans more into product thinking and interface design. I have been using it to explore how frontend polish, usability, and small workflow improvements can have a real impact on how students stay organized.',
-    ],
-    imageLabel: 'Canvas+ product visual',
-    imageSrc: canvasVisual,
-    featuredOnHome: true,
   },
   {
     eyebrow: 'Summer 2025 Internship Project',
@@ -258,6 +260,7 @@ const experienceCards: ExperienceCard[] = [
       'At Expedition Technology, I worked on Training Data Storefront (TDS), a platform where ML engineers curate annotated GEOINT observations for computer-vision training datasets. My work focused on making the diversity of those datasets easier to understand before training begins.',
       'I created a FastAPI endpoint that calculates a normalized Shannon entropy diversity score from 0.0 to 1.0 and returns the nested distributions behind it. The score combines geographic, illumination, time, and image-quality signals, with geographic variation prioritized because it creates the strongest domain shift for model generalization.',
       'On the frontend, the endpoint supported clear, chart-driven explanations of a dataset’s composition so users could move from a single diversity score to the underlying distributions that need attention.',
+      'I worked in an agile delivery cadence with increments containing sprints: Jira ticket standups on Mondays and Wednesdays, biweekly Scrum demos of in-progress work, and Thursday retrospectives to discuss what went wrong and plan the next increment.',
     ],
     learnedStack: [
       { label: 'FastAPI', icon: <ApiRoundedIcon /> },
@@ -692,7 +695,14 @@ function HomePage() {
                   ))}
                 </Stack>
 
-                {project.href && project.linkLabel ? (
+                {project.to && project.linkLabel ? (
+                  <Box component={RouterLink} to={project.to} className="project-link">
+                    <Typography component="span" className="project-link-label">
+                      {project.linkLabel}
+                    </Typography>
+                    <ArrowOutwardRoundedIcon className="project-link-icon" />
+                  </Box>
+                ) : project.href && project.linkLabel ? (
                   <Box
                     component="a"
                     href={project.href}
@@ -874,11 +884,6 @@ function AboutPage() {
 
             
           </Typography>
-          <Stack direction="row" spacing={1} useFlexGap flexWrap="wrap" className="interest-row">
-            {beyondCodeInterests.map((interest) => (
-              <Chip key={interest} label={interest} className="info-chip interest-chip" />
-            ))}
-          </Stack>
         </CardContent>
       </Card>
     </Stack>
@@ -888,14 +893,17 @@ function AboutPage() {
 function ProjectsPage() {
   return (
     <Stack spacing={4.5}>
-      <PageSummaryCard
-        subtitle="A deeper look into the work, decisions, and technical direction behind the projects I want to highlight."
-      />
+      <Box className="projects-page-intro fade-in-up" style={{ animationDelay: '80ms' }}>
+        <Typography variant="h1" className="page-title">
+          A deeper look into the work, decisions, and technical direction behind the projects I want to highlight.
+        </Typography>
+      </Box>
 
       <Stack spacing={2.25}>
         {projectCards.map((project, index) => (
           <Card
             key={project.title}
+            id={project.title === 'TDS: Dataset Diversity' ? 'tds-dataset-diversity' : undefined}
             className="section-card fade-in-up project-page-card"
             style={{ animationDelay: `${160 + index * 90}ms` }}
           >
@@ -920,11 +928,6 @@ function ProjectsPage() {
                   <Typography key={detail} className="card-description page-paragraph">
                     {detail}
                   </Typography>
-                ))}
-              </Stack>
-              <Stack direction="row" spacing={1} useFlexGap flexWrap="wrap" className="tag-row">
-                {project.tags.map((tag) => (
-                  <Chip key={tag} label={tag} className="info-chip" />
                 ))}
               </Stack>
               {project.href && project.linkLabel ? (
