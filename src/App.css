@@ -364,6 +364,17 @@
   font-size: 1.05rem;
 }
 
+.projects-page-intro {
+  max-width: 980px;
+  padding: clamp(0.5rem, 2vw, 1.5rem) 0;
+}
+
+.projects-page-intro .page-title {
+  color: var(--accent);
+  font-size: clamp(2.4rem, 5vw, 4.25rem);
+  line-height: 1.04;
+}
+
 .about-card-content {
   min-height: 180px;
   display: flex;

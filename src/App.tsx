@@ -295,15 +295,6 @@ const experienceCards: ExperienceCard[] = [
   },
 ]
 
-const beyondCodeInterests = [
-  'Reading',
-  'Gaming',
-  'Staying active',
-  'Building side projects',
-  'Learning new systems',
-  'Designing useful tools',
-]
-
 const aboutCollageTiles = [
   {
     src: aboutPhotoOne,
@@ -972,8 +963,15 @@ function App() {
   }, [])
 
   useEffect(() => {
+    if (location.hash) {
+      window.requestAnimationFrame(() => {
+        document.getElementById(location.hash.slice(1))?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      })
+      return
+    }
+
     window.scrollTo({ top: 0, behavior: 'smooth' })
-  }, [location.pathname])
+  }, [location.hash, location.pathname])
 
   const handleThemeToggle = () => {
     setIsDarkMode((currentMode) => !currentMode)
