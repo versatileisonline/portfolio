@@ -698,11 +698,11 @@ function HomePage() {
 
         <Box
           className="about-home-copy fade-in-up"
-          style={{ animationDelay: "340ms" }}
+          style={{ animationDelay: "340ms", maxWidth: 640, margin: "0 auto" }}
         >
           <Typography
             className="card-description"
-            sx={{ textAlign: "center", fontSize: "1.15rem" }}
+            style={{ textAlign: "center", fontSize: "1.15rem" }}
           >
             I want to make an impact on the world, whether for students,
             healthcare personnel, or fellow coders. I&apos;m drawn to building
@@ -930,8 +930,12 @@ function AboutPage() {
     <Stack spacing={4.5}>
       <Box
         className="projects-page-intro fade-in-up"
-        style={{ animationDelay: "80ms" }}
-        sx={{ textAlign: "center", maxWidth: 640, mx: "auto" }}
+        style={{
+          animationDelay: "80ms",
+          textAlign: "center",
+          maxWidth: 640,
+          margin: "0 auto",
+        }}
       >
         <Typography variant="h4" className="card-title projects-page-title">
           A little more context on how I think, what I value, and who I am
@@ -950,21 +954,6 @@ function AboutPage() {
             subtitle="I care most about building things that are useful, thoughtful, and meaningful to the people using them."
           />
           <Stack spacing={2.2} className="page-paragraphs">
-            <Box
-              className="about-home-copy fade-in-up"
-              style={{ animationDelay: "340ms" }}
-              sx={{ maxWidth: 640, mx: "auto" }}
-            >
-              <Typography
-                className="card-description"
-                sx={{ textAlign: "center", fontSize: "1.15rem" }}
-              >
-                I want to make an impact on the world, whether for students,
-                healthcare personnel, or fellow coders. I&apos;m drawn to
-                building things that make someone&apos;s day better and give
-                people back time.
-              </Typography>
-            </Box>
             <Typography className="card-description page-paragraph">
               I&apos;m drawn to a mix of software engineering, systems thinking,
               and product-minded design. I like tools that feel useful in a
@@ -1033,8 +1022,12 @@ function ProjectsPage() {
     <Stack spacing={4.5}>
       <Box
         className="projects-page-intro fade-in-up"
-        style={{ animationDelay: "80ms" }}
-        sx={{ textAlign: "center", maxWidth: 640, mx: "auto" }}
+        style={{
+          animationDelay: "80ms",
+          textAlign: "center",
+          maxWidth: 640,
+          margin: "0 auto",
+        }}
       >
         <Typography variant="h4" className="card-title projects-page-title">
           A deeper look into the work, decisions, and technical direction behind
