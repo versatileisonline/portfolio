@@ -49,7 +49,7 @@ import syndicateVisual from './assets/photos/project_syndicate.png'
 import darkWolfPhoto from './assets/photos/compressed_images/IMG_4204.jpeg'
 import { Link as RouterLink, Route, Routes, useLocation, useParams } from 'react-router-dom'
 
-import resume from './assets/bryans_resume-1.pdf'
+import resume from './assets/bryan_resume.pdf'
 import melanoma from './assets/melanoma_detection.pdf'
 import writingPost from './content/writing/index.md?raw'
 
