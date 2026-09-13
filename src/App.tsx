@@ -629,7 +629,7 @@ function HomePage() {
         </Box>
 
         <Box className="about-home-copy fade-in-up" style={{ animationDelay: '340ms' }}>
-          <Typography className="card-description">
+          <Typography className="card-description" sx={{ textAlign: 'center', fontSize: '1.15rem' }}>
             I want to make an impact on the world, whether for students, healthcare personnel, or fellow coders. I&apos;m
             drawn to building things that make someone&apos;s day better and give people back time.
           </Typography>
@@ -806,9 +806,11 @@ function HomePage() {
 function AboutPage() {
   return (
     <Stack spacing={4.5}>
-      <PageSummaryCard
-        subtitle="A little more context on how I think, what I value, and who I am outside of technical work."
-      />
+      <Box className="projects-page-intro fade-in-up" style={{ animationDelay: '80ms' }}>
+        <Typography variant="h4" className="card-title projects-page-title">
+          A little more context on how I think, what I value, and who I am outside of technical work.
+        </Typography>
+      </Box>
 
       <Card className="section-card fade-in-up page-card" style={{ animationDelay: '160ms' }}>
         <CardContent className="page-card-content">
