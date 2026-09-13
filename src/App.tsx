@@ -52,7 +52,6 @@ import { Link as RouterLink, Route, Routes, useLocation, useParams } from 'react
 import resume from './assets/bryans_resume-1.pdf'
 import melanoma from './assets/melanoma_detection.pdf'
 import writingPost from './content/writing/index.md?raw'
-import secondWritingPost from './content/writing/second.md?raw'
 
 type NavRoute = {
   label: string
@@ -156,23 +155,23 @@ const projectCards: ProjectCard[] = [
     featuredOnHome: true,
   },
   {
-    eyebrow: 'In progress: Jan. 2026 -',
-    title: 'ML For Healthcare: Melanoma Classification',
-    href: melanoma,
-    linkLabel: 'Read paper',
+    eyebrow: 'Summer 2025 Internship Project',
+    title: 'Project Syndicate',
     description:
-      'Built a machine leraning pipeline for melanoma image classification, focusing on early skin cancer detection from images.',
-    tags: ['Melanoma Detection', 'Medical Imaging', 'Python / Jupyter Notebook'],
+      'A CI/CD pipeline data aggregation dashboard built during my internship to help teams understand pipeline health, security, and compliance in one place.',
+    tags: ['Next.js', 'FastAPI', 'PostgreSQL', 'Docker', 'GKE'],
     details: [
-      'This project focuses on applying machine learning to a healthcare setting where early detection matters. I built the pipeline around melanoma image classification with an emphasis on model experimentation, data handling, and evaluation.',
-      'A big part of the work was thinking carefully about how to structure the workflow in a way that was reproducible and readable. I wanted the project to feel like something that could be expanded beyond a one-off notebook into a stronger research or product direction.',
+      'During my summer internship at Dark Wolf Solutions, I worked with two other interns on Project Syndicate, a CI/CD pipeline data aggregation platform built to give teams a clearer, centralized view of pipeline health, security, and compliance.',
+      'My work focused on helping build the dashboard experience, where we designed and developed interfaces that made complex pipeline, application, and organization-level data easier to understand and navigate.',
+      'Through this project, I gained hands-on experience with full-stack and DevOps workflows, including React, Material UI, FastAPI, PostgreSQL, Docker, GitLab CI, Google Kubernetes Engine, and Dex-based authentication.',
+      'Beyond the technical work, Syndicate helped me grow professionally by reinforcing how important communication, collaboration, and iterative problem-solving are in a real engineering environment, especially while working closely with other interns, engineers, and leadership to ship something practical and meaningful.',
     ],
-    imageLabel: 'Melanoma project visual',
-    imageSrc: melanomaVisual,
+    imageLabel: 'Project Syndicate dashboard',
+    imageSrc: syndicateVisual,
     featuredOnHome: true,
   },
   {
-    eyebrow: 'Most Recent: Jan. 2026 -',
+    eyebrow: 'In Progress: Jan. 2026 – Present',
     title: 'Canvas+',
     href: 'https://github.com/versatileisonline/CanvasPlus',
     linkLabel: 'View project',
@@ -205,27 +204,27 @@ const projectCards: ProjectCard[] = [
     imageClassName: 'project-detail-image-marco',
   },
   {
-    eyebrow: 'Summer 2025 Internship Project',
-    title: 'Project Syndicate',
+    eyebrow: 'In progress: Jan. 2026 -',
+    title: 'ML For Healthcare: Melanoma Classification',
+    href: melanoma,
+    linkLabel: 'Read paper',
     description:
-      'A CI/CD pipeline data aggregation dashboard built during my internship to help teams understand pipeline health, security, and compliance in one place.',
-    tags: ['Internship Project', 'CI/CD Visibility', 'Dashboard Design'],
+      'Built a machine learning pipeline for melanoma image classification, focusing on early skin cancer detection from images.',
+    tags: ['Melanoma Detection', 'Medical Imaging', 'Python / Jupyter Notebook'],
     details: [
-      'During my summer internship at Dark Wolf Solutions, I worked with two other interns on Project Syndicate, a CI/CD pipeline data aggregation platform built to give teams a clearer, centralized view of pipeline health, security, and compliance.',
-      'My work focused on helping build the dashboard experience, where we designed and developed interfaces that made complex pipeline, application, and organization-level data easier to understand and navigate.',
-      'Through this project, I gained hands-on experience with full-stack and DevOps workflows, including React, Material UI, FastAPI, PostgreSQL, Docker, GitLab CI, Google Kubernetes Engine, and Dex-based authentication.',
-      'Beyond the technical work, Syndicate helped me grow professionally by reinforcing how important communication, collaboration, and iterative problem-solving are in a real engineering environment, especially while working closely with other interns, engineers, and leadership to ship something practical and meaningful.',
+      'This project focuses on applying machine learning to a healthcare setting where early detection matters. I built the pipeline around melanoma image classification with an emphasis on model experimentation, data handling, and evaluation.',
+      'A big part of the work was thinking carefully about how to structure the workflow in a way that was reproducible and readable. I wanted the project to feel like something that could be expanded beyond a one-off notebook into a stronger research or product direction.',
     ],
-    imageLabel: 'Project Syndicate dashboard',
-    imageSrc: syndicateVisual,
+    imageLabel: 'Melanoma project visual',
+    imageSrc: melanomaVisual,
     featuredOnHome: false,
   },
 ]
 
 const skillCards: SkillCard[] = [
   {
-    title: 'Most Proficient Languages',
-    description: 'Python, C, C#, Java',
+    title: 'Languages',
+    description: 'Python, TypeScript, JavaScript, C, Java, C#',
     // highlights: [
     //   { label: 'Git', icon: <SourceRoundedIcon /> },
     //   { label: 'Linux', icon: <TerminalRoundedIcon /> },
@@ -242,8 +241,8 @@ const skillCards: SkillCard[] = [
     ],
   },
   {
-    title: 'Certifications',
-    description: 'None as of yet, studying for Google Cloud Digital Leader!',
+    title: 'AI & Testing',
+    description: 'OpenAI/Anthropic APIs, Hugging Face, PyTest, Jest, CUDA',
     // highlights: [
     //   { label: 'React', icon: <WebRoundedIcon /> },
     //   { label: 'FastAPI', icon: <ApiRoundedIcon /> },
@@ -345,13 +344,6 @@ const blogPosts: BlogPost[] = [
     title: 'How to become more effective utilizing AI tools',
     excerpt: "Tooling with AI",
     source: writingPost,
-  },
-  {
-    slug: 'second-post',
-    status: 'Draft',
-    title: 'Second Post',
-    excerpt: 'Blah blah... second post stuff.',
-    source: secondWritingPost,
   },
 ]
 
@@ -583,8 +575,8 @@ function HomePage() {
               </Box>
 
               <Typography className="hero-subtitle">
-                Hey, I&apos;m <Box component="span" className="hero-name-highlight">Bryan Torres</Box>. Here, you can
-                check out what I&apos;m working on. I do my best to contribute to impactful projects.
+                Virginia Tech MEng CS candidate graduating May 2027, building production software across Python,
+                TypeScript, cloud infrastructure, and AI.
               </Typography>
 
               <Box className="contact-grid">
