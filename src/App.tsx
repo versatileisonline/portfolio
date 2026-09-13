@@ -55,7 +55,7 @@ import {
   useParams,
 } from "react-router-dom";
 
-import resume from "./assets/bryan_resume.pdf";
+import resume from "./assets/bryan_resume-2.pdf";
 import melanoma from "./assets/melanoma_detection.pdf";
 import writingPost from "./content/writing/index.md?raw";
 
@@ -220,7 +220,7 @@ const projectCards: ProjectCard[] = [
     imageClassName: "project-detail-image-marco",
   },
   {
-    eyebrow: "In progress: Jan. 2026 -",
+    eyebrow: "In Progress: Jan. 2026 -",
     title: "ML For Healthcare: Melanoma Classification",
     href: melanoma,
     linkLabel: "Read paper",
@@ -277,7 +277,7 @@ const experienceCards: ExperienceCard[] = [
     role: "Software Engineering Intern",
     organization: "Expedition Technology",
     paragraphs: [
-      "At Expedition Technology, I worked on Training Data Storefront (TDS), a platform where ML engineers curate annotated GEOINT observations for computer-vision training datasets. My work focused on making the diversity of those datasets easier to understand before training begins.",
+      "At Expedition Technology, I worked on a platform where ML engineers curate annotated GEOINT observations for computer-vision training datasets. My work focused on making the diversity of those datasets easier to understand before training begins.",
       "I created a FastAPI endpoint that calculates a normalized Shannon entropy diversity score from 0.0 to 1.0 and returns the nested distributions behind it. The score combines geographic, illumination, time, and image-quality signals, with geographic variation prioritized because it creates the strongest domain shift for model generalization.",
       "On the frontend, the endpoint supported clear, chart-driven explanations of a dataset’s composition so users could move from a single diversity score to the underlying distributions that need attention.",
       "I worked in an agile delivery cadence with increments containing sprints: Jira ticket standups on Mondays and Wednesdays, biweekly Scrum demos of in-progress work, and Thursday retrospectives to discuss what went wrong and plan the next increment.",
