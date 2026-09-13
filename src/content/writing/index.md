@@ -13,9 +13,8 @@ const note = 'You can add code blocks too'
 ```
 -->
 
-# First Post! 
+# First Post!
 
 ## April 4th, 2026
 
-There's always a first for everything in life. 
-
+There's always a first for everything in life.

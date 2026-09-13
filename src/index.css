@@ -1,22 +1,22 @@
 @font-face {
-  font-family: 'Poppins';
-  src: url('./assets/fonts/Poppins-Regular.ttf') format('truetype');
+  font-family: "Poppins";
+  src: url("./assets/fonts/Poppins-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Poppins';
-  src: url('./assets/fonts/Poppins-Bold.ttf') format('truetype');
+  font-family: "Poppins";
+  src: url("./assets/fonts/Poppins-Bold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Poppins';
-  src: url('./assets/fonts/Poppins-ExtraBold.ttf') format('truetype');
+  font-family: "Poppins";
+  src: url("./assets/fonts/Poppins-ExtraBold.ttf") format("truetype");
   font-weight: 800 900;
   font-style: normal;
   font-display: swap;
@@ -24,8 +24,10 @@
 
 :root {
   /* Font boilerplate: replace these with your preferred font stack. */
-  --font-body: 'Poppins', 'Avenir Next', 'Segoe UI', sans-serif; /* Add your own font here */
-  --font-display: 'Poppins', 'Avenir Next', 'Segoe UI', sans-serif; /* Add your own font here */
+  --font-body:
+    "Poppins", "Avenir Next", "Segoe UI", sans-serif; /* Add your own font here */
+  --font-display:
+    "Poppins", "Avenir Next", "Segoe UI", sans-serif; /* Add your own font here */
   font-family: var(--font-body);
   line-height: 1.5;
   font-weight: 400;
