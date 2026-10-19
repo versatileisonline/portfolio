@@ -9,6 +9,10 @@ import {
   CardContent,
   Chip,
   Container,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
   Fab,
   IconButton,
   Stack,
@@ -23,6 +27,7 @@ import ArrowOutwardRoundedIcon from "@mui/icons-material/ArrowOutwardRounded";
 import ArrowUpwardRoundedIcon from "@mui/icons-material/ArrowUpwardRounded";
 import DarkModeRoundedIcon from "@mui/icons-material/DarkModeRounded";
 import LightModeRoundedIcon from "@mui/icons-material/LightModeRounded";
+import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import WestRoundedIcon from "@mui/icons-material/WestRounded";
 import TerminalRoundedIcon from "@mui/icons-material/TerminalRounded";
 import SourceRoundedIcon from "@mui/icons-material/SourceRounded";
@@ -113,7 +118,7 @@ type BlogPost = {
 
 const navRoutes: NavRoute[] = [
   { label: "Home", to: "/#home" },
-  { label: "Projects", to: "/#projects" },
+  { label: "Experience", to: "/#experience" },
   { label: "About Me", to: "/#about" },
 ];
 
@@ -146,11 +151,32 @@ const contactLinks: ContactLink[] = [
 
 const projectCards: ProjectCard[] = [
   {
-    eyebrow: "Roblox Game",
+    eyebrow: "In Development: Sep. 2026 – Present",
     title: "Kingdom Tycoon",
-    description: "Kingdom Tycoon is my Roblox game.",
-    tags: ["Roblox"],
-    details: [],
+    href: "https://github.com/versatileisonline/kingdom-tycoon",
+    linkLabel: "View GitHub repository",
+    description:
+      "Developing a medieval Roblox tycoon with a modular Luau architecture and session-locked player persistence, designed around kingdom building and rebirth progression.",
+    tags: ["Roblox", "Luau", "DataStoreService", "ProfileStore", "Rojo"],
+    details: [
+      "Kingdom Tycoon is a medieval game centered on building a kingdom through droppers, farms, walls, and a rebirth system with permanent progression multipliers. The core tycoon is in development, with open-world exploration, optional PvP, and armies planned for later stages.",
+      "I architected a modular Luau backend with separate server services, client controllers, shared types, and explicit initialization lifecycles. I implemented persistent profiles for currency, progression, and building purchases using DataStoreService and ProfileStore, including session locking, autosaving, and disconnect/shutdown saves, and verified persistence across play sessions.",
+      "Snapshot-based state updates use schema validation and revision checks to reject invalid or stale mutations. Versioned schemas and tests cover data isolation and invalid-update rejection. A Rojo, VS Code, and Git workflow keeps the code versioned outside Roblox Studio, while separate development and live data stores protect player progress during testing.",
+    ],
+  },
+  {
+    eyebrow: "In Progress · Three-Person Team",
+    title: "KV Cache Lab",
+    href: "https://github.com/versatileisonline/kv-cache-lab",
+    linkLabel: "View GitHub repository",
+    description:
+      "Collaborating on a three-person team to benchmark LLM KV-cache strategies, studying tradeoffs between GPU memory usage, generation speed, and answer quality.",
+    tags: ["Python", "LLM Inference", "Hugging Face", "CUDA", "Benchmarking"],
+    details: [
+      "Our research asks how much KV-cache memory can be saved while preserving answer quality, and what that saving costs in generation time. We are starting with a FullKV passkey-retrieval pilot before comparing cache optimization methods.",
+      "The pilot uses fixed-seed prompts, exact input token lengths, pinned model and tokenizer revisions, and an uncompressed Hugging Face baseline on a single NVIDIA GPU. It records predictions, retrieval accuracy, cache storage, phase-specific GPU memory peaks, and timing diagnostics.",
+      "The experiment workflow preserves configuration and environment metadata alongside each run, supports offline rescoring, and includes correctness checks. The current pilot validates the experiment pipeline; performance comparisons are ongoing work.",
+    ],
   },
   {
     eyebrow: "Summer 2026 Internship Project",
@@ -595,7 +621,7 @@ function BlogPostPage() {
   );
 }
 
-function HomePage() {
+function HomePage(props: { onProjectSelect: (project: ProjectCard) => void }) {
   return (
     <>
       <Box component="section" id="home" className="hero-section">
@@ -608,14 +634,15 @@ function HomePage() {
               <Box>
                 <Typography variant="h1" className="hero-title">
                   <Box component="span" className="hero-name-highlight">
-                    Bryan Torres
-                  </Box>
-                  <Box
-                    component="span"
-                    aria-hidden="true"
-                    className="hero-title-cursor"
-                  >
-                    |
+                    Bryan{" "}
+                    <Box component="span" className="hero-last-name">
+                      Torres
+                      <Box
+                        component="span"
+                        aria-hidden="true"
+                        className="hero-title-cursor"
+                      />
+                    </Box>
                   </Box>
                 </Typography>
               </Box>
@@ -667,54 +694,6 @@ function HomePage() {
               </Box>
             </Box>
           </Box>
-        </Box>
-      </Box>
-
-      <ProjectsSection />
-
-      <Box component="section" id="skills" className="content-section">
-        <Box className="fade-in-up" style={{ animationDelay: "560ms" }}>
-          <SectionHeading title="Technical Skills" />
-        </Box>
-
-        <Box className="card-grid skills-grid">
-          {skillCards.map((skill, index) => (
-            <Card
-              key={skill.title}
-              className="section-card skill-card fade-in-up"
-              style={{ animationDelay: `${620 + index * 90}ms` }}
-            >
-              <CardContent className="card-content">
-                <Typography variant="h5" className="card-title">
-                  {skill.title}
-                </Typography>
-                <Typography className="card-description">
-                  {skill.description}
-                </Typography>
-                {skill.highlights ? (
-                  <Stack
-                    direction="row"
-                    spacing={1}
-                    useFlexGap
-                    flexWrap="wrap"
-                    className="icon-badge-row"
-                  >
-                    {skill.highlights.map((highlight) => (
-                      <Box
-                        key={`${skill.title}-${highlight.label}`}
-                        className="icon-badge"
-                      >
-                        <Box className="icon-badge-icon">{highlight.icon}</Box>
-                        <Typography className="icon-badge-label">
-                          {highlight.label}
-                        </Typography>
-                      </Box>
-                    ))}
-                  </Stack>
-                ) : null}
-              </CardContent>
-            </Card>
-          ))}
         </Box>
       </Box>
 
@@ -792,6 +771,54 @@ function HomePage() {
             </Card>
           ))}
         </Stack>
+      </Box>
+
+      <ProjectsSection onProjectSelect={props.onProjectSelect} />
+
+      <Box component="section" id="skills" className="content-section">
+        <Box className="fade-in-up" style={{ animationDelay: "560ms" }}>
+          <SectionHeading title="Technical Skills" />
+        </Box>
+
+        <Box className="card-grid skills-grid">
+          {skillCards.map((skill, index) => (
+            <Card
+              key={skill.title}
+              className="section-card skill-card fade-in-up"
+              style={{ animationDelay: `${620 + index * 90}ms` }}
+            >
+              <CardContent className="card-content">
+                <Typography variant="h5" className="card-title">
+                  {skill.title}
+                </Typography>
+                <Typography className="card-description">
+                  {skill.description}
+                </Typography>
+                {skill.highlights ? (
+                  <Stack
+                    direction="row"
+                    spacing={1}
+                    useFlexGap
+                    flexWrap="wrap"
+                    className="icon-badge-row"
+                  >
+                    {skill.highlights.map((highlight) => (
+                      <Box
+                        key={`${skill.title}-${highlight.label}`}
+                        className="icon-badge"
+                      >
+                        <Box className="icon-badge-icon">{highlight.icon}</Box>
+                        <Typography className="icon-badge-label">
+                          {highlight.label}
+                        </Typography>
+                      </Box>
+                    ))}
+                  </Stack>
+                ) : null}
+              </CardContent>
+            </Card>
+          ))}
+        </Box>
       </Box>
 
       <Box component="section" id="about" className="content-section">
@@ -872,7 +899,9 @@ function AboutPage() {
   );
 }
 
-function ProjectsSection() {
+function ProjectsSection(props: {
+  onProjectSelect: (project: ProjectCard) => void;
+}) {
   return (
     <Box component="section" id="projects" className="content-section">
       <SectionHeading title="Projects" />
@@ -908,41 +937,30 @@ function ProjectsSection() {
                   <Chip key={tag} label={tag} className="info-chip" />
                 ))}
               </Stack>
-              {project.details.length > 0 ? (
-                <Box component="details" className="project-details">
-                  <Box component="summary">Project details</Box>
-                  <Stack spacing={1.5} className="project-details-content">
-                    {project.imageSrc ? (
-                      <Box
-                        component="img"
-                        loading="lazy"
-                        src={project.imageSrc}
-                        alt={project.imageLabel ?? project.title}
-                        className="project-inline-image"
-                      />
-                    ) : null}
-                    {project.details.map((detail) => (
-                      <Typography key={detail} className="card-description">
-                        {detail}
-                      </Typography>
-                    ))}
-                  </Stack>
-                </Box>
-              ) : null}
-              {project.href && project.linkLabel ? (
-                <Box
-                  component="a"
-                  href={project.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="project-link"
+              <Box className="project-card-actions">
+                <Button
+                  className="project-details-button"
+                  onClick={() => props.onProjectSelect(project)}
+                  aria-label={`View details for ${project.title}`}
+                  aria-haspopup="dialog"
                 >
-                  <Typography component="span" className="project-link-label">
-                    {project.linkLabel}
-                  </Typography>
-                  <ArrowOutwardRoundedIcon className="project-link-icon" />
-                </Box>
-              ) : null}
+                  Project details
+                </Button>
+                {project.href && project.linkLabel ? (
+                  <Box
+                    component="a"
+                    href={project.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="project-link"
+                  >
+                    <Typography component="span" className="project-link-label">
+                      {project.linkLabel}
+                    </Typography>
+                    <ArrowOutwardRoundedIcon className="project-link-icon" />
+                  </Box>
+                ) : null}
+              </Box>
             </CardContent>
           </Card>
         ))}
@@ -955,21 +973,54 @@ function App() {
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [showFooterBar, setShowFooterBar] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
+  const [selectedProject, setSelectedProject] = useState<ProjectCard | null>(
+    null,
+  );
+  const [isProjectDialogOpen, setIsProjectDialogOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => {
+    let frame = 0;
+    const updateScrollState = () => {
+      frame = 0;
       setShowScrollTop(window.scrollY > 320);
       const { scrollTop, scrollHeight, clientHeight } =
         document.documentElement;
       setShowFooterBar(scrollTop + clientHeight >= scrollHeight - 8);
+
+      // Experience stays active through projects and skills until About Me begins.
+      const marker =
+        (document.getElementById("site-header")?.getBoundingClientRect()
+          .bottom ?? 80) + 32;
+      let currentSection = "home";
+      for (const route of navRoutes) {
+        const id = route.to.split("#")[1];
+        const section = document.getElementById(id);
+        if (section && section.getBoundingClientRect().top <= marker) {
+          currentSection = id;
+        }
+      }
+      setActiveSection(currentSection);
+    };
+    const scheduleUpdate = () => {
+      if (!frame) frame = window.requestAnimationFrame(updateScrollState);
     };
 
-    handleScroll();
-    window.addEventListener("scroll", handleScroll);
+    updateScrollState();
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
+    window.addEventListener("resize", scheduleUpdate);
+    const resizeObserver = new ResizeObserver(scheduleUpdate);
+    const main = document.querySelector("main");
+    if (main) resizeObserver.observe(main);
 
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    return () => {
+      window.removeEventListener("scroll", scheduleUpdate);
+      window.removeEventListener("resize", scheduleUpdate);
+      resizeObserver.disconnect();
+      window.cancelAnimationFrame(frame);
+    };
+  }, [location.pathname]);
 
   useEffect(() => {
     if (location.hash) {
@@ -993,29 +1044,51 @@ function App() {
   };
 
   const isRouteActive = (route: string) =>
-    location.pathname === "/" && route === `/${location.hash || "#home"}`;
+    location.pathname === "/" && route === `/#${activeSection}`;
 
   return (
     <Box className={`app-shell ${isDarkMode ? "theme-dark" : "theme-light"}`}>
       <AppBar
+        id="site-header"
         position="sticky"
         elevation={0}
         className="topbar"
         sx={{ bgcolor: "#000000ff" }}
       >
         <Toolbar className="topbar-toolbar">
-          <Box component={RouterLink} to="/#home" className="brand-mark">
+          <Box
+            component={RouterLink}
+            to="/#home"
+            className="brand-mark"
+            onClick={() =>
+              document
+                .getElementById("home")
+                ?.scrollIntoView({ behavior: "smooth" })
+            }
+          >
             BT
           </Box>
 
           <Stack direction="row" spacing={1.5} className="topbar-actions">
-            <Stack direction="row" spacing={1} className="topbar-links">
+            <Stack
+              component="nav"
+              aria-label="Main navigation"
+              direction="row"
+              spacing={1}
+              className="topbar-links"
+            >
               {navRoutes.map((item) => (
                 <Button
                   key={item.to}
                   component={RouterLink}
                   to={item.to}
                   color="inherit"
+                  aria-current={isRouteActive(item.to) ? "location" : undefined}
+                  onClick={() =>
+                    document
+                      .getElementById(item.to.split("#")[1])
+                      ?.scrollIntoView({ behavior: "smooth" })
+                  }
                   className={`topbar-button ${isRouteActive(item.to) ? "topbar-button-active" : ""}`}
                 >
                   {item.label}
@@ -1051,7 +1124,17 @@ function App() {
           ) : null}
 
           <Routes>
-            <Route path="/" element={<HomePage />} />
+            <Route
+              path="/"
+              element={
+                <HomePage
+                  onProjectSelect={(project) => {
+                    setSelectedProject(project);
+                    setIsProjectDialogOpen(true);
+                  }}
+                />
+              }
+            />
             <Route path="/about" element={<Navigate to="/#about" replace />} />
             <Route
               path="/projects"
@@ -1064,6 +1147,78 @@ function App() {
           </Routes>
         </Container>
       </Box>
+
+      <Dialog
+        open={isProjectDialogOpen}
+        onClose={() => setIsProjectDialogOpen(false)}
+        aria-labelledby="project-dialog-title"
+        fullWidth
+        maxWidth="md"
+        scroll="paper"
+        className={`project-dialog ${isDarkMode ? "theme-dark" : "theme-light"}`}
+        slotProps={{ paper: { className: "project-dialog-paper" } }}
+      >
+        <DialogTitle id="project-dialog-title" className="project-dialog-title">
+          {selectedProject?.title}
+        </DialogTitle>
+        <IconButton
+          aria-label="Close project details"
+          className="project-dialog-close"
+          onClick={() => setIsProjectDialogOpen(false)}
+        >
+          <CloseRoundedIcon />
+        </IconButton>
+        <DialogContent dividers className="project-dialog-content">
+          {selectedProject ? (
+            <Stack spacing={2.5}>
+              <Typography className="card-eyebrow">
+                {selectedProject.eyebrow}
+              </Typography>
+              {selectedProject.imageSrc ? (
+                <Box
+                  component="img"
+                  src={selectedProject.imageSrc}
+                  alt={selectedProject.imageLabel ?? selectedProject.title}
+                  className="project-inline-image"
+                />
+              ) : null}
+              <Typography className="card-description">
+                {selectedProject.description}
+              </Typography>
+              {selectedProject.details.map((detail) => (
+                <Typography key={detail} className="card-description">
+                  {detail}
+                </Typography>
+              ))}
+              <Stack direction="row" spacing={1} useFlexGap flexWrap="wrap">
+                {selectedProject.tags.map((tag) => (
+                  <Chip key={tag} label={tag} className="info-chip" />
+                ))}
+              </Stack>
+            </Stack>
+          ) : null}
+        </DialogContent>
+        <DialogActions className="project-dialog-actions">
+          {selectedProject?.href ? (
+            <Button
+              component="a"
+              href={selectedProject.href}
+              target="_blank"
+              rel="noreferrer"
+              endIcon={<ArrowOutwardRoundedIcon />}
+              className="project-details-button"
+            >
+              {selectedProject.linkLabel ?? "View project"}
+            </Button>
+          ) : null}
+          <Button
+            onClick={() => setIsProjectDialogOpen(false)}
+            className="project-details-button"
+          >
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
 
       {showFooterBar ? (
         <Box className="footer-bar">
