@@ -32,7 +32,7 @@ import CloudQueueRoundedIcon from "@mui/icons-material/CloudQueueRounded";
 import WebRoundedIcon from "@mui/icons-material/WebRounded";
 import AccountTreeRoundedIcon from "@mui/icons-material/AccountTreeRounded";
 import ApiRoundedIcon from "@mui/icons-material/ApiRounded";
-import profilePic from "./assets/photos/compressed_images/IMG_9088.jpg";
+import profilePic from "./assets/photos/profile-bryan.jpg";
 import aboutPhotoOne from "./assets/photos/compressed_images/IMG_3927.jpg";
 import aboutPhotoTwo from "./assets/photos/compressed_images/IMG_8620.jpeg";
 import aboutPhotoThree from "./assets/photos/compressed_images/IMG_8628.jpg";
@@ -49,13 +49,14 @@ import syndicateVisual from "./assets/photos/project_syndicate.png";
 import darkWolfPhoto from "./assets/photos/compressed_images/IMG_4204.jpeg";
 import {
   Link as RouterLink,
+  Navigate,
   Route,
   Routes,
   useLocation,
   useParams,
 } from "react-router-dom";
 
-import resume from "./assets/bryan_resume-2.pdf";
+import resume from "./assets/btorres_resume-2.pdf";
 import melanoma from "./assets/melanoma_detection.pdf";
 import writingPost from "./content/writing/index.md?raw";
 
@@ -111,9 +112,9 @@ type BlogPost = {
 };
 
 const navRoutes: NavRoute[] = [
-  { label: "Home", to: "/" },
-  { label: "About", to: "/about" },
-  { label: "Projects", to: "/projects" },
+  { label: "Home", to: "/#home" },
+  { label: "Projects", to: "/#projects" },
+  { label: "About Me", to: "/#about" },
 ];
 
 const contactLinks: ContactLink[] = [
@@ -144,6 +145,13 @@ const contactLinks: ContactLink[] = [
 ];
 
 const projectCards: ProjectCard[] = [
+  {
+    eyebrow: "Roblox Game",
+    title: "Kingdom Tycoon",
+    description: "Kingdom Tycoon is my Roblox game.",
+    tags: ["Roblox"],
+    details: [],
+  },
   {
     eyebrow: "Summer 2026 Internship Project",
     title: "TDS: Dataset Diversity",
@@ -368,25 +376,13 @@ const blogPosts: BlogPost[] = [
   },
 ];
 
-function SectionHeading(props: {
-  eyebrow: string;
-  title: string;
-  subtitle?: string;
-  action?: ReactNode;
-}) {
-  const { eyebrow, title, subtitle, action } = props;
-
+function SectionHeading(props: { title: string }) {
   return (
-    <Stack spacing={1.4} className="section-heading">
-      <Typography className="section-eyebrow">{eyebrow}</Typography>
+    <Box className="section-heading">
       <Typography variant="h2" className="section-title">
-        {title}
+        {props.title}
       </Typography>
-      {subtitle ? (
-        <Typography className="section-subtitle">{subtitle}</Typography>
-      ) : null}
-      {action ? <Box className="section-action-row">{action}</Box> : null}
-    </Stack>
+    </Box>
   );
 }
 
@@ -600,10 +596,6 @@ function BlogPostPage() {
 }
 
 function HomePage() {
-  const featuredProjects = projectCards.filter(
-    (project) => project.featuredOnHome !== false,
-  );
-
   return (
     <>
       <Box component="section" id="home" className="hero-section">
@@ -678,127 +670,11 @@ function HomePage() {
         </Box>
       </Box>
 
-      <Box component="section" id="about" className="content-section">
-        <Box className="fade-in-up" style={{ animationDelay: "280ms" }}>
-          <SectionHeading
-            eyebrow="01"
-            title="About Me"
-            action={
-              <Button
-                component={RouterLink}
-                to="/about"
-                endIcon={<ArrowOutwardRoundedIcon />}
-                className="section-link-button"
-              >
-                More About Me
-              </Button>
-            }
-          />
-        </Box>
-
-        <Box
-          className="about-home-copy fade-in-up"
-          style={{ animationDelay: "340ms", maxWidth: 640, margin: "0 auto" }}
-        >
-          <Typography
-            className="card-description"
-            style={{ textAlign: "center", fontSize: "1.15rem" }}
-          >
-            I want to make an impact on the world, whether for students,
-            healthcare personnel, or fellow coders. I&apos;m drawn to building
-            things that make someone&apos;s day better and give people back
-            time.
-          </Typography>
-        </Box>
-      </Box>
-
-      <Box component="section" id="projects" className="content-section">
-        <Box className="fade-in-up" style={{ animationDelay: "400ms" }}>
-          <SectionHeading
-            eyebrow="02"
-            title="Featured Projects"
-            subtitle="Work that shows research, product thinking and topics that I care about."
-            action={
-              <Button
-                component={RouterLink}
-                to="/projects"
-                endIcon={<ArrowOutwardRoundedIcon />}
-                className="section-link-button"
-              >
-                View All Projects
-              </Button>
-            }
-          />
-        </Box>
-
-        <Box className="card-grid projects-grid">
-          {featuredProjects.map((project, index) => (
-            <Card
-              key={project.title}
-              className="section-card project-card fade-in-up"
-              style={{ animationDelay: `${460 + index * 90}ms` }}
-            >
-              <CardContent className="card-content">
-                <Typography className="card-eyebrow">
-                  {project.eyebrow}
-                </Typography>
-                <Typography variant="h5" className="card-title">
-                  {project.title}
-                </Typography>
-                <Typography className="card-description">
-                  {project.description}
-                </Typography>
-
-                <Stack
-                  direction="row"
-                  spacing={1}
-                  useFlexGap
-                  flexWrap="wrap"
-                  className="tag-row"
-                >
-                  {project.tags.map((tag) => (
-                    <Chip key={tag} label={tag} className="info-chip" />
-                  ))}
-                </Stack>
-
-                {project.to && project.linkLabel ? (
-                  <Box
-                    component={RouterLink}
-                    to={project.to}
-                    className="project-link"
-                  >
-                    <Typography component="span" className="project-link-label">
-                      {project.linkLabel}
-                    </Typography>
-                    <ArrowOutwardRoundedIcon className="project-link-icon" />
-                  </Box>
-                ) : project.href && project.linkLabel ? (
-                  <Box
-                    component="a"
-                    href={project.href}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="project-link"
-                  >
-                    <Typography component="span" className="project-link-label">
-                      {project.linkLabel}
-                    </Typography>
-                    <ArrowOutwardRoundedIcon className="project-link-icon" />
-                  </Box>
-                ) : null}
-              </CardContent>
-            </Card>
-          ))}
-        </Box>
-      </Box>
+      <ProjectsSection />
 
       <Box component="section" id="skills" className="content-section">
         <Box className="fade-in-up" style={{ animationDelay: "560ms" }}>
-          <SectionHeading
-            eyebrow="03"
-            title="Technical Skills"
-            subtitle="The languages, tools, and systems I rely on most right now."
-          />
+          <SectionHeading title="Technical Skills" />
         </Box>
 
         <Box className="card-grid skills-grid">
@@ -844,11 +720,7 @@ function HomePage() {
 
       <Box component="section" id="experience" className="content-section">
         <Box className="fade-in-up" style={{ animationDelay: "720ms" }}>
-          <SectionHeading
-            eyebrow="04"
-            title="Experience"
-            subtitle="Professional work experience and the environments that shaped how I work."
-          />
+          <SectionHeading title="Experience" />
         </Box>
 
         <Stack spacing={2.5} className="experience-stack">
@@ -921,6 +793,11 @@ function HomePage() {
           ))}
         </Stack>
       </Box>
+
+      <Box component="section" id="about" className="content-section">
+        <SectionHeading title="About Me" />
+        <AboutPage />
+      </Box>
     </>
   );
 }
@@ -928,31 +805,12 @@ function HomePage() {
 function AboutPage() {
   return (
     <Stack spacing={4.5}>
-      <Box
-        className="projects-page-intro fade-in-up"
-        style={{
-          animationDelay: "80ms",
-          textAlign: "center",
-          maxWidth: 640,
-          margin: "0 auto",
-        }}
-      >
-        <Typography variant="h4" className="card-title projects-page-title">
-          A little more context on how I think, what I value, and who I am
-          outside of technical work.
-        </Typography>
-      </Box>
-
       <Card
         className="section-card fade-in-up page-card"
         style={{ animationDelay: "160ms" }}
       >
         <CardContent className="page-card-content">
-          <SectionHeading
-            eyebrow="Overview"
-            title="What Drives Me"
-            subtitle="I care most about building things that are useful, thoughtful, and meaningful to the people using them."
-          />
+          <SectionHeading title="What Drives Me" />
           <Stack spacing={2.2} className="page-paragraphs">
             <Typography className="card-description page-paragraph">
               I&apos;m drawn to a mix of software engineering, systems thinking,
@@ -982,6 +840,7 @@ function AboutPage() {
                 <Box
                   component="img"
                   src={tile.src}
+                  loading="lazy"
                   alt={tile.alt}
                   className="about-collage-image"
                 />
@@ -996,11 +855,7 @@ function AboutPage() {
         style={{ animationDelay: "280ms" }}
       >
         <CardContent className="page-card-content">
-          <SectionHeading
-            eyebrow="Beyond Code"
-            title="Interests Outside of Engineering"
-            subtitle="The things that reset my brain, shape my perspective, and keep me creative."
-          />
+          <SectionHeading title="Interests Outside of Engineering" />
           <Typography className="card-description page-paragraph">
             Outside of coding, I enjoy reading, playing games, and staying
             active. Those are the things that help me recharge and often spark
@@ -1017,26 +872,12 @@ function AboutPage() {
   );
 }
 
-function ProjectsPage() {
+function ProjectsSection() {
   return (
-    <Stack spacing={4.5}>
-      <Box
-        className="projects-page-intro fade-in-up"
-        style={{
-          animationDelay: "80ms",
-          textAlign: "center",
-          maxWidth: 640,
-          margin: "0 auto",
-        }}
-      >
-        <Typography variant="h4" className="card-title projects-page-title">
-          A deeper look into the work, decisions, and technical direction behind
-          the projects I want to highlight.
-        </Typography>
-      </Box>
-
-      <Stack spacing={2.25}>
-        {projectCards.map((project, index) => (
+    <Box component="section" id="projects" className="content-section">
+      <SectionHeading title="Projects" />
+      <Box className="card-grid projects-grid">
+        {projectCards.map((project) => (
           <Card
             key={project.title}
             id={
@@ -1044,39 +885,50 @@ function ProjectsPage() {
                 ? "tds-dataset-diversity"
                 : undefined
             }
-            className="section-card fade-in-up project-page-card"
-            style={{ animationDelay: `${160 + index * 90}ms` }}
+            className="section-card project-card"
           >
-            <CardContent className="page-card-content">
-              {project.imageSrc ? (
-                <Box className="project-detail-media">
-                  <Box
-                    component="img"
-                    src={project.imageSrc}
-                    alt={project.imageLabel ?? project.title}
-                    className={`project-detail-image ${project.imageClassName ?? ""}`}
-                  />
-                </Box>
-              ) : null}
+            <CardContent className="card-content">
               <Typography className="card-eyebrow">
                 {project.eyebrow}
               </Typography>
-              <Typography variant="h4" className="card-title">
+              <Typography variant="h3" className="card-title project-title">
                 {project.title}
               </Typography>
-              <Stack spacing={1.5} className="page-paragraphs">
-                <Typography className="card-description page-paragraph">
-                  {project.description}
-                </Typography>
-                {project.details.map((detail) => (
-                  <Typography
-                    key={detail}
-                    className="card-description page-paragraph"
-                  >
-                    {detail}
-                  </Typography>
+              <Typography className="card-description">
+                {project.description}
+              </Typography>
+              <Stack
+                direction="row"
+                spacing={1}
+                useFlexGap
+                flexWrap="wrap"
+                className="tag-row"
+              >
+                {project.tags.map((tag) => (
+                  <Chip key={tag} label={tag} className="info-chip" />
                 ))}
               </Stack>
+              {project.details.length > 0 ? (
+                <Box component="details" className="project-details">
+                  <Box component="summary">Project details</Box>
+                  <Stack spacing={1.5} className="project-details-content">
+                    {project.imageSrc ? (
+                      <Box
+                        component="img"
+                        loading="lazy"
+                        src={project.imageSrc}
+                        alt={project.imageLabel ?? project.title}
+                        className="project-inline-image"
+                      />
+                    ) : null}
+                    {project.details.map((detail) => (
+                      <Typography key={detail} className="card-description">
+                        {detail}
+                      </Typography>
+                    ))}
+                  </Stack>
+                </Box>
+              ) : null}
               {project.href && project.linkLabel ? (
                 <Box
                   component="a"
@@ -1094,8 +946,8 @@ function ProjectsPage() {
             </CardContent>
           </Card>
         ))}
-      </Stack>
-    </Stack>
+      </Box>
+    </Box>
   );
 }
 
@@ -1140,15 +992,8 @@ function App() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const isRouteActive = (route: string) => {
-    if (route === "/") {
-      return location.pathname === "/";
-    }
-
-    return (
-      location.pathname === route || location.pathname.startsWith(`${route}/`)
-    );
-  };
+  const isRouteActive = (route: string) =>
+    location.pathname === "/" && route === `/${location.hash || "#home"}`;
 
   return (
     <Box className={`app-shell ${isDarkMode ? "theme-dark" : "theme-light"}`}>
@@ -1159,7 +1004,7 @@ function App() {
         sx={{ bgcolor: "#000000ff" }}
       >
         <Toolbar className="topbar-toolbar">
-          <Box component={RouterLink} to="/" className="brand-mark">
+          <Box component={RouterLink} to="/#home" className="brand-mark">
             BT
           </Box>
 
@@ -1207,8 +1052,13 @@ function App() {
 
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/projects" element={<ProjectsPage />} />
+            <Route path="/about" element={<Navigate to="/#about" replace />} />
+            <Route
+              path="/projects"
+              element={
+                <Navigate to={`/${location.hash || "#projects"}`} replace />
+              }
+            />
             <Route path="/writing" element={<BlogIndexPage />} />
             <Route path="/writing/:slug" element={<BlogPostPage />} />
           </Routes>

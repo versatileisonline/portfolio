@@ -3,7 +3,7 @@
   background:
     radial-gradient(
       circle at top right,
-      rgba(92, 170, 255, 0.16),
+      rgba(204, 37, 44, 0.16),
       transparent 24%
     ),
     linear-gradient(180deg, #050608 0%, #000000 100%);
@@ -23,7 +23,7 @@
   background:
     radial-gradient(
       circle at top right,
-      rgba(92, 170, 255, 0.12),
+      rgba(204, 37, 44, 0.12),
       transparent 24%
     ),
     linear-gradient(180deg, #f6f7fa 0%, #eef1f5 100%);
@@ -52,14 +52,14 @@
   justify-content: center;
   border-radius: 999px;
   background: var(--brand-accent);
-  color: #101114;
+  color: #ffffff;
   text-decoration: none;
   font-size: 1.1rem;
   font-weight: 900;
   font-family: var(--font-display);
   letter-spacing: 0.08em;
   box-shadow:
-    0 8px 20px rgba(255, 145, 77, 0.24),
+    0 8px 20px rgba(204, 37, 44, 0.24),
     0 0 0 1px rgba(255, 255, 255, 0.06);
 }
 
@@ -85,12 +85,12 @@
 
 .topbar-button-active {
   background: var(--accent);
-  color: #08111d;
+  color: #ffffff;
 }
 
 .topbar-button:hover {
   background: var(--accent);
-  color: #08111d;
+  color: #ffffff;
 }
 
 .fade-in-up {
@@ -218,7 +218,7 @@
 
 .contact-card {
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto minmax(0, 1fr) auto;
   gap: 0.9rem;
   align-items: center;
   padding: 1rem 1.05rem;
@@ -252,7 +252,7 @@
 .contact-card:hover .contact-value,
 .contact-card:hover .contact-icon,
 .contact-card:hover .contact-arrow {
-  color: #08111d;
+  color: #ffffff;
 }
 
 .contact-icon,
@@ -267,6 +267,11 @@
   margin-bottom: 0.15rem;
 }
 
+.contact-copy {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
 .portrait-column {
   display: flex;
   justify-content: center;
@@ -276,7 +281,7 @@
   padding: 0.9rem;
   border-radius: 999px;
   background:
-    linear-gradient(180deg, rgba(92, 170, 255, 0.95), rgba(92, 170, 255, 0.2)),
+    linear-gradient(180deg, rgba(204, 37, 44, 0.95), rgba(204, 37, 44, 0.2)),
     #0f1012;
   box-shadow:
     0 18px 45px rgba(0, 0, 0, 0.34),
@@ -284,8 +289,8 @@
 }
 
 .hero-avatar {
-  width: min(500px, 82vw) !important;
-  height: min(500px, 82vw) !important;
+  width: clamp(220px, 30vw, 440px) !important;
+  height: clamp(220px, 30vw, 440px) !important;
   border: 12px solid #151618;
 }
 
@@ -323,7 +328,7 @@
   border-radius: 999px !important;
   border: 1px solid var(--accent) !important;
   background: var(--accent) !important;
-  color: #08111d !important;
+  color: #ffffff !important;
   padding: 0.6rem 1rem !important;
   text-transform: none !important;
   font-weight: 700 !important;
@@ -529,9 +534,9 @@
 }
 
 .info-chip {
-  background: rgba(92, 170, 255, 0.14);
+  background: rgba(204, 37, 44, 0.14);
   color: var(--text-primary) !important;
-  border: 1px solid rgba(92, 170, 255, 0.24);
+  border: 1px solid rgba(204, 37, 44, 0.24);
 }
 
 .info-chip .MuiChip-label {
@@ -650,8 +655,8 @@
 }
 
 .interest-chip {
-  background: rgba(240, 139, 76, 0.1);
-  border-color: rgba(240, 139, 76, 0.2);
+  background: rgba(204, 37, 44, 0.1);
+  border-color: rgba(204, 37, 44, 0.2);
 }
 
 .icon-badge-row {
@@ -664,8 +669,8 @@
   gap: 0.55rem;
   padding: 0.55rem 0.8rem;
   border-radius: 999px;
-  background: rgba(92, 170, 255, 0.1);
-  border: 1px solid rgba(92, 170, 255, 0.22);
+  background: rgba(204, 37, 44, 0.1);
+  border: 1px solid rgba(204, 37, 44, 0.22);
 }
 
 .icon-badge-icon {
@@ -758,11 +763,11 @@
   right: 24px;
   bottom: 24px;
   z-index: 1200;
-  color: #0f1114 !important;
+  color: #ffffff !important;
   background: var(--brand-accent) !important;
   box-shadow:
     0 12px 24px rgba(0, 0, 0, 0.34),
-    0 18px 42px rgba(240, 139, 76, 0.22) !important;
+    0 18px 42px rgba(204, 37, 44, 0.22) !important;
 }
 
 .scroll-top-button:hover {
@@ -781,7 +786,7 @@
 }
 
 .theme-light .contact-card:hover {
-  border-color: rgba(92, 170, 255, 0.34);
+  border-color: rgba(204, 37, 44, 0.34);
 }
 
 .theme-light .card-eyebrow,
@@ -803,7 +808,7 @@
 .theme-light .section-link-button,
 .theme-light .back-link-button {
   background: var(--accent) !important;
-  color: #08111d !important;
+  color: #ffffff !important;
 }
 
 .theme-light .about-collage-tile,
@@ -812,8 +817,8 @@
 }
 
 .theme-light .icon-badge {
-  background: rgba(92, 170, 255, 0.14);
-  border-color: rgba(92, 170, 255, 0.2);
+  background: rgba(204, 37, 44, 0.14);
+  border-color: rgba(204, 37, 44, 0.2);
 }
 
 .theme-light .markdown-code-block {
@@ -932,5 +937,103 @@
     animation: none;
     opacity: 1;
     transform: none;
+  }
+}
+
+/* Explicit weights override Material UI's default heading typography. */
+.hero-title,
+.page-title,
+.section-title,
+.card-title,
+.contact-label,
+.experience-stack-title {
+  font-weight: 700 !important;
+}
+
+.hero-avatar img {
+  object-position: 57% 38%;
+}
+
+.projects-grid {
+  align-items: start;
+}
+
+.project-title {
+  font-size: 1.5rem !important;
+  line-height: 1.25 !important;
+  overflow-wrap: anywhere;
+}
+
+.project-details {
+  margin: 1rem 0;
+}
+
+.project-details summary {
+  color: var(--accent);
+  cursor: pointer;
+  font-weight: 700;
+  padding: 0.35rem 0;
+}
+
+.project-details-content {
+  padding-top: 1rem;
+}
+
+.project-inline-image {
+  display: block;
+  width: 100%;
+  max-height: 240px;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+.topbar-button-active,
+.topbar-button:hover {
+  background: var(--accent) !important;
+  color: #ffffff !important;
+}
+
+.topbar-button {
+  text-transform: none !important;
+  font-weight: 700 !important;
+}
+
+.contact-card:focus-visible,
+.project-details summary:focus-visible,
+.project-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+@media (max-width: 720px) {
+  .topbar-toolbar {
+    align-items: center;
+  }
+
+  .topbar-actions,
+  .topbar-links {
+    gap: 0.25rem !important;
+  }
+
+  .topbar-button {
+    min-width: 0 !important;
+    padding: 0.5rem 0.65rem !important;
+    font-size: 0.85rem !important;
+  }
+
+  .brand-mark {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+  }
+
+  .theme-toggle {
+    width: 36px;
+    height: 36px;
+  }
+
+  .hero-avatar {
+    width: min(400px, 65vw) !important;
+    height: min(400px, 65vw) !important;
   }
 }
