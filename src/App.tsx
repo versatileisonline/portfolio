@@ -1,4 +1,10 @@
-import { type ReactNode, useEffect, useState } from "react";
+import {
+  type ReactNode,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import "./App.css";
 import {
   AppBar,
@@ -979,9 +985,24 @@ function App() {
   );
   const [isProjectDialogOpen, setIsProjectDialogOpen] = useState(false);
   const location = useLocation();
+  const pendingSection = useRef<string | null>(null);
+
+  const scrollToSection = useCallback((id: string) => {
+    const section = document.getElementById(id);
+    if (!section) return;
+    pendingSection.current = id;
+    setActiveSection(id === "home" || id === "about" ? id : "experience");
+    section.scrollIntoView({
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? "instant"
+        : "smooth",
+      block: "start",
+    });
+  }, []);
 
   useEffect(() => {
     let frame = 0;
+    let lastOffset = 0;
     const updateScrollState = () => {
       frame = 0;
       setShowScrollTop(window.scrollY > 320);
@@ -989,10 +1010,28 @@ function App() {
         document.documentElement;
       setShowFooterBar(scrollTop + clientHeight >= scrollHeight - 8);
 
-      // Experience stays active through projects and skills until About Me begins.
-      const marker =
-        (document.getElementById("site-header")?.getBoundingClientRect()
-          .bottom ?? 80) + 32;
+      // Share one offset between anchor scrolling and section detection.
+      const headerHeight =
+        document.getElementById("site-header")?.getBoundingClientRect()
+          .height ?? 80;
+      const offset = Math.ceil(headerHeight) + 24;
+      if (offset !== lastOffset) {
+        document.documentElement.style.setProperty(
+          "--section-scroll-offset",
+          `${offset}px`,
+        );
+        lastOffset = offset;
+      }
+      if (pendingSection.current) {
+        const target = document.getElementById(pendingSection.current);
+        const reachedTarget =
+          target && Math.abs(target.getBoundingClientRect().top - offset) <= 2;
+        const atBottom = scrollTop + clientHeight >= scrollHeight - 2;
+        if (!reachedTarget && !atBottom && target) return;
+        pendingSection.current = null;
+      }
+      // Experience includes projects and skills until About Me begins.
+      const marker = offset + 2;
       let currentSection = "home";
       for (const route of navRoutes) {
         const id = route.to.split("#")[1];
@@ -1007,15 +1046,30 @@ function App() {
       if (!frame) frame = window.requestAnimationFrame(updateScrollState);
     };
 
+    const releaseNavigation = () => {
+      pendingSection.current = null;
+      scheduleUpdate();
+    };
+
     updateScrollState();
     window.addEventListener("scroll", scheduleUpdate, { passive: true });
+    window.addEventListener("scrollend", releaseNavigation);
+    window.addEventListener("wheel", releaseNavigation, { passive: true });
+    window.addEventListener("touchstart", releaseNavigation, { passive: true });
+    window.addEventListener("keydown", releaseNavigation);
     window.addEventListener("resize", scheduleUpdate);
     const resizeObserver = new ResizeObserver(scheduleUpdate);
     const main = document.querySelector("main");
     if (main) resizeObserver.observe(main);
+    const header = document.getElementById("site-header");
+    if (header) resizeObserver.observe(header);
 
     return () => {
       window.removeEventListener("scroll", scheduleUpdate);
+      window.removeEventListener("scrollend", releaseNavigation);
+      window.removeEventListener("wheel", releaseNavigation);
+      window.removeEventListener("touchstart", releaseNavigation);
+      window.removeEventListener("keydown", releaseNavigation);
       window.removeEventListener("resize", scheduleUpdate);
       resizeObserver.disconnect();
       window.cancelAnimationFrame(frame);
@@ -1023,24 +1077,23 @@ function App() {
   }, [location.pathname]);
 
   useEffect(() => {
-    if (location.hash) {
-      window.requestAnimationFrame(() => {
-        document
-          .getElementById(location.hash.slice(1))
-          ?.scrollIntoView({ behavior: "smooth", block: "start" });
-      });
-      return;
-    }
-
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [location.hash, location.pathname]);
+    const frame = window.requestAnimationFrame(() => {
+      if (location.hash) {
+        scrollToSection(location.hash.slice(1));
+      } else {
+        pendingSection.current = null;
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [location.hash, location.pathname, scrollToSection]);
 
   const handleThemeToggle = () => {
     setIsDarkMode((currentMode) => !currentMode);
   };
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    scrollToSection("home");
   };
 
   const isRouteActive = (route: string) =>
@@ -1060,11 +1113,7 @@ function App() {
             component={RouterLink}
             to="/#home"
             className="brand-mark"
-            onClick={() =>
-              document
-                .getElementById("home")
-                ?.scrollIntoView({ behavior: "smooth" })
-            }
+            onClick={() => scrollToSection("home")}
           >
             BT
           </Box>
@@ -1084,11 +1133,7 @@ function App() {
                   to={item.to}
                   color="inherit"
                   aria-current={isRouteActive(item.to) ? "location" : undefined}
-                  onClick={() =>
-                    document
-                      .getElementById(item.to.split("#")[1])
-                      ?.scrollIntoView({ behavior: "smooth" })
-                  }
+                  onClick={() => scrollToSection(item.to.split("#")[1])}
                   className={`topbar-button ${isRouteActive(item.to) ? "topbar-button-active" : ""}`}
                 >
                   {item.label}

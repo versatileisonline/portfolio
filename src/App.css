@@ -121,11 +121,11 @@
 
 .hero-section,
 .content-section {
-  scroll-margin-top: 104px;
+  scroll-margin-top: var(--section-scroll-offset, 104px);
 }
 
 #tds-dataset-diversity {
-  scroll-margin-top: 104px;
+  scroll-margin-top: var(--section-scroll-offset, 104px);
 }
 
 .hero-section {
