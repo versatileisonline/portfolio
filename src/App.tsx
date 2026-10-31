@@ -157,6 +157,22 @@ const contactLinks: ContactLink[] = [
 
 const projectCards: ProjectCard[] = [
   {
+    eyebrow: "In Development: Oct. 2026 – Present",
+    title: "Codeward",
+    href: "https://github.com/versatileisonline/codeward",
+    linkLabel: "View GitHub repository",
+    description:
+      "Building an offline desktop password manager, starting with a Rust cryptographic core for bounded vault parsing, encryption primitives, and paper recovery-code handling.",
+    tags: ["Rust", "RustCrypto", "Argon2id", "HKDF-SHA256", "XChaCha20-Poly1305"],
+    details: [
+      "Codeward is a local-first password manager targeting macOS, Windows, and Linux, with a Rust core and a planned Tauri-hosted React/TypeScript interface. The design centers on an encrypted local vault, offline use without an account or telemetry, and a handwritten recovery secret for access to an intact vault after forgetting the master password.",
+      "Implemented so far: a bounded Rust parser and encoder for the versioned vault format, with a 16 MiB envelope limit and rejection of malformed input and unsupported settings. The core includes Argon2id master-password derivation, HKDF-SHA256 recovery-key derivation, XChaCha20-Poly1305 encryption primitives, and paper-code generation and transcription checks. Rust ownership consumes encryption nonce objects on use, while owned secret buffers are cleared on drop.",
+      "Validation so far: 41 unit and integration tests cover the parser, encoder, cryptographic primitives, and paper-code component, alongside a compile-fail doctest for nonce ownership. Known-answer vectors and independently generated Python and C fixtures check the implementation. Current execution evidence is from macOS; integrated vault workflows and Windows/Linux runtime support remain unverified.",
+      "Next implementations: strict credential-schema validation, vault creation and unlock, and committed saves with fault-injection tests. Later milestones connect the offline recovery workflow and desktop interface, including credential management, password generation, search, save indicators, and session locking. The recovery secret restores access to an intact vault; it cannot recreate a missing or corrupted vault file.",
+      "Future options: browser integration and autofill, automated backups and file restoration, and optional sync or online recovery. These are separately scoped possibilities beyond the initial offline prototype, rather than implemented features or promised releases.",
+    ],
+  },
+  {
     eyebrow: "In Development: Jun. 2026 – Present",
     title: "Kingdom Tycoon",
     href: "https://github.com/versatileisonline/kingdom-tycoon",
@@ -284,7 +300,7 @@ const projectCards: ProjectCard[] = [
 const skillCards: SkillCard[] = [
   {
     title: "Languages",
-    description: "Python, TypeScript, JavaScript, C, Java, C#",
+    description: "Rust, Python, TypeScript, JavaScript, C, Java, C#, SQL, Luau",
     // highlights: [
     //   { label: 'Git', icon: <SourceRoundedIcon /> },
     //   { label: 'Linux', icon: <TerminalRoundedIcon /> },
@@ -293,7 +309,7 @@ const skillCards: SkillCard[] = [
   {
     title: "Frameworks & Tools",
     description:
-      "Unix/Linux cmds, GKE, Docker, Git, GitHub/GitLab, Next.js, React, MUI, FastAPI",
+      "Linux, Kubernetes, GKE, Docker, Helm, Argo CD, Git, GitHub/GitLab, Next.js, React, MUI, FastAPI",
     highlights: [
       { label: "Docker", icon: <LayersRoundedIcon /> },
       { label: "GitLab", icon: <AccountTreeRoundedIcon /> },
