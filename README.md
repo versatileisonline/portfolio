@@ -13,11 +13,11 @@ A personal portfolio for Bryan Torres, featuring selected software engineering, 
 
 ## Included content and assets
 
-- Project features for TDS: Dataset Diversity, melanoma classification, Canvas+, M.A.R.C.O., and Project Syndicate
+- Project features for Codeward, Kingdom Tycoon, KV Cache Lab, TDS: Dataset Diversity, melanoma classification, Canvas+, M.A.R.C.O., and Project Syndicate
 - Resume PDFs and a melanoma-classification paper
 - Original project visuals and personal photography, including compressed image variants for the web
 - Local Poppins font files
-- Contact links for email, GitHub, LinkedIn, and resume access
+- Contact links for email, GitHub, LinkedIn, and the current resume at `src/assets/resume.pdf`
 - Markdown-powered writing drafts in `src/content/writing/`
 
 ## Local development
@@ -37,11 +37,35 @@ npm run build    # Type-check and create a production build
 npm run preview  # Preview the production build locally
 ```
 
-To refresh the checked-in static site in `docs/` for local/GitHub Pages deployment:
+GitHub Actions builds `dist/` and deploys it to GitHub Pages on pushes to `main`.
+Source changes and assets are sufficient for that deployment; the checked-in
+`docs/` snapshot is not the Actions deployment source.
+
+To refresh the optional static snapshot in `docs/` locally:
 
 ```bash
 npm run deploy-local
 ```
+
+## Keeping projects and the resume current
+
+Project cards and their detail dialogs share the `projectCards` entries in
+`src/App.tsx`. Update an existing entry as work lands, or add an entry with its
+period, description, tags, repository link, and detail paragraphs for a new project.
+Keep completed work, next implementations, and longer-term options distinct.
+
+Codeward's entry highlights its implemented Rust file-format, cryptographic, and
+paper-code components. Integrated vault workflows, persistence, recovery flows,
+and the desktop UI remain upcoming. Before updating its claims, check the
+[implementation progress](https://github.com/versatileisonline/codeward/blob/main/docs/milestone-2-progress.md)
+and [roadmap](https://github.com/versatileisonline/codeward/blob/main/docs/roadmap.md)
+in the Codeward repository. Treat planned platform support and optional features
+as future work until the corresponding implementation and validation exist.
+
+Replace `src/assets/resume.pdf` with the latest approved PDF to update the resume
+link without changing the import. Vite generates a content-hashed production URL
+on each changed version. Run `npm run lint` and `npm run build`, then verify the
+resume link and changed project dialogs in the preview before committing.
 
 ## Writing and future work
 
