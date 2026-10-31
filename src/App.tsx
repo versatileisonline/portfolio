@@ -67,7 +67,7 @@ import {
   useParams,
 } from "react-router-dom";
 
-import resume from "./assets/btorres_resume-2.pdf";
+import resume from "./assets/resume.pdf";
 import melanoma from "./assets/melanoma_detection.pdf";
 import writingPost from "./content/writing/index.md?raw";
 
