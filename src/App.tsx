@@ -157,7 +157,7 @@ const contactLinks: ContactLink[] = [
 
 const projectCards: ProjectCard[] = [
   {
-    eyebrow: "In Development: Sep. 2026 – Present",
+    eyebrow: "In Development: Jun. 2026 – Present",
     title: "Kingdom Tycoon",
     href: "https://github.com/versatileisonline/kingdom-tycoon",
     linkLabel: "View GitHub repository",
