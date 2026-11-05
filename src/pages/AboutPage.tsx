@@ -6,6 +6,7 @@ export default function AboutPage() {
   return (
     <Stack spacing={4.5}>
       <Card
+        id="about-drives"
         className="section-card fade-in-up page-card"
         style={{ animationDelay: "160ms" }}
       >
@@ -27,6 +28,7 @@ export default function AboutPage() {
       </Card>
 
       <Card
+        id="about-photos"
         className="section-card fade-in-up page-card"
         style={{ animationDelay: "220ms" }}
       >
@@ -51,6 +53,7 @@ export default function AboutPage() {
       </Card>
 
       <Card
+        id="about-interests"
         className="section-card fade-in-up page-card"
         style={{ animationDelay: "280ms" }}
       >

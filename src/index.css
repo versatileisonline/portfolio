@@ -76,9 +76,30 @@ summary {
 button {
   color: inherit;
 }
-button:not(:disabled),
-summary {
+a[href],
+button:not(:disabled):not(.companion-sprite),
+summary,
+[role="button"]:not([aria-disabled="true"]),
+[role="link"]:not([aria-disabled="true"]),
+[role="tab"]:not([aria-disabled="true"]),
+input[type="checkbox"],
+input[type="radio"],
+select,
+label[for] {
   cursor: pointer;
+}
+/* Icons, images, and text keep the same cursor as their clickable control. */
+a[href] *,
+button:not(:disabled):not(.companion-sprite) *,
+summary *,
+[role="button"] *,
+[role="link"] *,
+[role="tab"] * {
+  cursor: inherit;
+}
+button:disabled,
+[aria-disabled="true"] {
+  cursor: not-allowed;
 }
 button:focus-visible,
 a:focus-visible,

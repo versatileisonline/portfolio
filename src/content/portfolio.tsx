@@ -53,6 +53,8 @@ export type ProjectCard = {
   details: string[];
   imageLabel?: string;
   imageSrc?: string;
+  imageWidth?: number;
+  imageHeight?: number;
   featuredOnHome?: boolean;
   imageClassName?: string;
 };
@@ -70,6 +72,8 @@ export type ExperienceCard = {
   paragraphs: string[];
   imageSrc?: string;
   imageAlt?: string;
+  imageWidth?: number;
+  imageHeight?: number;
   learnedStack?: { label: string; icon: ReactNode }[];
 };
 
@@ -170,8 +174,8 @@ export const projectCards: ProjectCard[] = [
   {
     eyebrow: "Summer 2026 Internship Project",
     title: "TDS: Dataset Diversity",
-    to: "/projects#tds-dataset-diversity",
-    linkLabel: "Read More",
+    to: "/#experience-expedition-technology",
+    linkLabel: "View internship experience",
     description:
       "Built a FastAPI-backed diversity score that helps ML engineers assess the robustness of curated GEOINT training datasets for computer-vision models.",
     tags: [
@@ -192,6 +196,8 @@ export const projectCards: ProjectCard[] = [
   {
     eyebrow: "Summer 2025 Internship Project",
     title: "Project Syndicate",
+    to: "/#experience-dark-wolf-solutions",
+    linkLabel: "View internship experience",
     description:
       "A CI/CD pipeline data aggregation dashboard built during my internship to help teams understand pipeline health, security, and compliance in one place.",
     tags: ["Next.js", "FastAPI", "PostgreSQL", "Docker", "GKE"],
@@ -203,6 +209,8 @@ export const projectCards: ProjectCard[] = [
     ],
     imageLabel: "Project Syndicate dashboard",
     imageSrc: syndicateVisual,
+    imageWidth: 1740,
+    imageHeight: 888,
     featuredOnHome: true,
   },
   {
@@ -219,6 +227,8 @@ export const projectCards: ProjectCard[] = [
     ],
     imageLabel: "Canvas+ product visual",
     imageSrc: canvasVisual,
+    imageWidth: 3596,
+    imageHeight: 2010,
     featuredOnHome: true,
   },
   {
@@ -239,6 +249,8 @@ export const projectCards: ProjectCard[] = [
     ],
     imageLabel: "MARCO research visual",
     imageSrc: marcoVisual,
+    imageWidth: 1400,
+    imageHeight: 1050,
     featuredOnHome: true,
     imageClassName: "project-detail-image-marco",
   },
@@ -260,6 +272,8 @@ export const projectCards: ProjectCard[] = [
     ],
     imageLabel: "Melanoma project visual",
     imageSrc: melanomaVisual,
+    imageWidth: 1806,
+    imageHeight: 636,
     featuredOnHome: false,
   },
 ];
@@ -324,6 +338,8 @@ export const experienceCards: ExperienceCard[] = [
       "On the technical side, we helped create the user interface for Syndicate, a pipeline dashboard designed across pipeline, application, and organization-level views. We built and deployed a containerized system using PostgreSQL, a Next.js frontend, a FastAPI backend, and Dex for OAuth, with deployments running through GKE. Overall, the internship strengthened both my technical foundation and my confidence in working as part of a collaborative engineering team.",
     ],
     imageSrc: darkWolfPhoto,
+    imageWidth: 1320,
+    imageHeight: 1651,
     imageAlt: "Bryan Torres at Dark Wolf Solutions",
     learnedStack: [
       { label: "Git", icon: <SourceRoundedIcon /> },

@@ -1,0 +1,6 @@
+Pixel LEGO wizard avatar
+
+Created with the built-in image-generation tool from the user-provided LEGO wizard reference on 2026-11-05.
+Final asset: public/lego-wizard-avatar.png. Used for the favicon and 28px top-header avatar.
+
+Final refinement prompt: Make the pixel wizard much shorter, squatter, and stubbier. Keep its blue pointed hat, yellow face with two black eyes, white beard, blue clothes, yellow hands, and black belt. Use a roughly square silhouette, a low squat hat, short beard, tiny chunky legs, and simple crisp 24x24-style pixel art. Limited flat palette, no props, background, baseplate, text, glow, or texture. Center the whole character with minimal padding and genuine alpha transparency.

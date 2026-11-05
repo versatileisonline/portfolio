@@ -1,6 +1,9 @@
 import ExpandMoreRoundedIcon from "@mui/icons-material/ExpandMoreRounded";
 import SectionHeading from "./SectionHeading";
 import { experienceCards } from "../content/portfolio";
+import { experienceAnchor } from "../content/navigation";
+import DisclosureMedia from "./DisclosureMedia";
+import ExpandableDetails from "./ExpandableDetails";
 
 export default function ExperienceSection() {
   return (
@@ -8,37 +11,29 @@ export default function ExperienceSection() {
       <SectionHeading title="Experience" />
       <div className="experience-list">
         {experienceCards.map((experience) => (
-          <details
+          <ExpandableDetails
             className="disclosure experience-disclosure"
             key={experience.organization}
+            id={experienceAnchor(experience.organization)}
           >
             <summary>
               <div className="disclosure-heading">
-                <div>
-                  <h3>{experience.organization}</h3>
-                  <p className="role-label">{experience.role}</p>
-                </div>
-                <div className="disclosure-meta">
-                  <span>{experience.period}</span>
-                  <ExpandMoreRoundedIcon className="disclosure-chevron" />
-                </div>
+                <h3>{experience.organization}</h3>
+                <ExpandMoreRoundedIcon className="disclosure-chevron" />
               </div>
+              <p className="role-label">{experience.role}</p>
+              <p className="project-period">{experience.period}</p>
               <p className="disclosure-preview">
                 {experience.paragraphs[0].split(". ")[0]}.
               </p>
-            </summary>
-            <div className="disclosure-body">
               {experience.imageSrc ? (
-                <img
+                <DisclosureMedia
                   src={experience.imageSrc}
                   alt={experience.imageAlt ?? experience.organization}
-                  className="experience-image"
-                  loading="lazy"
+                  width={experience.imageWidth}
+                  height={experience.imageHeight}
                 />
               ) : null}
-              {experience.paragraphs.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
-              ))}
               {experience.learnedStack ? (
                 <div className="learned-stack">
                   <h4>Learned most from</h4>
@@ -52,8 +47,13 @@ export default function ExperienceSection() {
                   </div>
                 </div>
               ) : null}
+            </summary>
+            <div className="disclosure-body">
+              {experience.paragraphs.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
             </div>
-          </details>
+          </ExpandableDetails>
         ))}
       </div>
     </section>

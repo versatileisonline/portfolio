@@ -1,9 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { navRoutes } from "../content/portfolio";
+import { navigationRoutes as navRoutes } from "../content/navigation";
 
 export function useSectionNavigation() {
   const [activeSection, setActiveSection] = useState("home");
+  const [activeSubsection, setActiveSubsection] = useState<string | null>(null);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const location = useLocation();
   const pendingSection = useRef<string | null>(null);
@@ -14,6 +15,7 @@ export function useSectionNavigation() {
     if (id === "home") {
       pendingSection.current = null;
       setActiveSection("home");
+      setActiveSubsection(null);
       window.scrollTo({
         top: 0,
         behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
@@ -23,7 +25,10 @@ export function useSectionNavigation() {
       return;
     }
     pendingSection.current = id;
-    setActiveSection(id);
+    if (section instanceof HTMLDetailsElement) section.open = true;
+    const parentId = section.closest("section")?.id ?? id;
+    setActiveSection(parentId);
+    setActiveSubsection(parentId === id ? null : id);
     section.scrollIntoView({
       behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
         ? "instant"
@@ -63,6 +68,16 @@ export function useSectionNavigation() {
           section = id;
       }
       setActiveSection(section);
+      let subsection: string | null = null;
+      const current = navRoutes.find(
+        (route) => route.to.split("#")[1] === section,
+      );
+      for (const child of current?.children ?? []) {
+        const element = document.getElementById(child.id);
+        if (element && element.getBoundingClientRect().top <= offset + 3)
+          subsection = child.id;
+      }
+      setActiveSubsection(subsection);
     }
     function schedule() {
       if (!frame) frame = requestAnimationFrame(update);
@@ -102,7 +117,13 @@ export function useSectionNavigation() {
       }
     });
     return () => cancelAnimationFrame(frame);
-  }, [location.hash, location.pathname, scrollToSection]);
+  }, [location.hash, location.pathname, location.key, scrollToSection]);
 
-  return { activeSection, showScrollTop, location, scrollToSection };
+  return {
+    activeSection,
+    activeSubsection,
+    showScrollTop,
+    location,
+    scrollToSection,
+  };
 }

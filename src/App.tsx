@@ -16,8 +16,13 @@ import { useSectionNavigation } from "./hooks/useSectionNavigation";
 
 function App() {
   const { isDarkMode, toggleTheme } = useTheme();
-  const { activeSection, showScrollTop, location, scrollToSection } =
-    useSectionNavigation();
+  const {
+    activeSection,
+    activeSubsection,
+    showScrollTop,
+    location,
+    scrollToSection,
+  } = useSectionNavigation();
 
   const home = location.pathname === "/";
 
@@ -45,9 +50,31 @@ function App() {
           <RouterLink
             to="/#home"
             className="brand-mark"
+            title="Back to home"
             onClick={() => scrollToSection("home")}
           >
-            Bryan Torres<span aria-hidden="true">.</span>
+            <span className="brand-name">
+              Bryan Torres
+              <span className="brand-dot" aria-hidden="true">
+                .
+              </span>
+            </span>
+          </RouterLink>
+          <RouterLink
+            to="/#home"
+            className="header-avatar-link"
+            title="Back to home"
+            aria-label="Wizard: back to home"
+            onClick={() => scrollToSection("home")}
+          >
+            <img
+              src={`${import.meta.env.BASE_URL.replace(/\/$/, "")}/lego-wizard-avatar.png`}
+              alt=""
+              aria-hidden="true"
+              width={28}
+              height={28}
+              className="brand-avatar"
+            />
           </RouterLink>
           <div className="topbar-actions">
             <a
@@ -74,6 +101,7 @@ function App() {
       {home ? (
         <SectionRail
           activeSection={activeSection}
+          activeSubsection={activeSubsection}
           scrollToSection={scrollToSection}
         />
       ) : null}
