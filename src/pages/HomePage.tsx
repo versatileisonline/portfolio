@@ -32,21 +32,30 @@ export default function HomePage() {
             production software across Python, TypeScript, cloud infrastructure,
             and AI.
           </p>
-          <ul
-            className="personal-bullets"
-            aria-label="Personal highlights, placeholders for the local demo"
-          >
+          <ul className="personal-bullets" aria-label="Personal highlights">
             <li>
-              <span>Engineering focus — coming soon</span>
+              <span>
+                Engineering focus — Linux systems, debugging, tmux, backend APIs,
+                and DevOps with CI/CD.
+              </span>
             </li>
             <li>
-              <span>A little about me — coming soon</span>
+              <span>
+                A little about me — Singing, reading, staying active, and striving
+                to improve 1% each day.
+              </span>
             </li>
             <li>
-              <span>What I’m building — coming soon</span>
+              <span>
+                What I’m building — A Roblox game and Codeward, a local password
+                manager for personal use, friends, and family.
+              </span>
             </li>
             <li>
-              <span>Outside of engineering — coming soon</span>
+              <span>
+                Outside of engineering — Exploring new ideas, building creative
+                projects, and spending time with friends and family.
+              </span>
             </li>
           </ul>
           <nav className="contact-row" aria-label="Contact and résumé">
