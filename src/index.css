@@ -1,79 +1,118 @@
 @font-face {
-  font-family: "Roboto";
-  src: url("./assets/fonts/Roboto-Variable.ttf") format("truetype");
+  font-family: "Inter";
+  src: url("./assets/fonts/InterVariable.woff2") format("woff2");
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
 }
 
 :root {
-  --font-body: "Roboto", Arial, sans-serif;
-  --font-display: "Roboto", Arial, sans-serif;
+  --font-body:
+    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-display: var(--font-body);
+  --bg-primary: #faf9f7;
+  --panel-bg: #faf9f7;
+  --surface: #f1efeb;
+  --text-primary: #292724;
+  --text-secondary: #66615c;
+  --text-muted: #79736c;
+  --line: #e4e0da;
+  --accent: #9b4937;
+  --accent-strong: #7e3829;
+  --brand-accent: var(--accent);
+  --section-scroll-offset: 100px;
   font-family: var(--font-body);
-  line-height: 1.5;
+  font-size: 15px;
+  line-height: 1.7;
   font-weight: 400;
-  color: #f4f5f7;
-  background-color: #000000;
+  color: var(--text-primary);
+  background: var(--bg-primary);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  --bg-primary: #000000;
-  --surface: #101114;
-  --panel-bg: #111317;
-  --panel-bg-hover: #171b20;
-  --text-primary: #f4f5f7;
-  --text-secondary: #b9bcc3;
-  --accent: #cc252c;
-  --accent-strong: #cc252c;
-  --brand-accent: #cc252c;
+  color-scheme: light;
 }
 
-html {
-  scroll-behavior: smooth;
-  background: var(--bg-primary);
-}
-
-body {
-  margin: 0;
-  min-width: 320px;
-  min-height: 100vh;
-  background: var(--bg-primary);
-  font-family: var(--font-body);
-  color: var(--text-primary);
-}
-
-button,
-input,
-textarea,
-select {
-  font-family: var(--font-body);
-}
-
-a {
-  color: inherit;
+:root[data-theme="dark"] {
+  --bg-primary: #19191c;
+  --panel-bg: #19191c;
+  --surface: #242428;
+  --text-primary: #eeece8;
+  --text-secondary: #b8b5af;
+  --text-muted: #a6a199;
+  --line: #343438;
+  --accent: #e19a82;
+  --accent-strong: #f0b39d;
+  color-scheme: dark;
 }
 
 * {
   box-sizing: border-box;
 }
-
+html {
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+  min-width: 320px;
+  background: var(--bg-primary);
+}
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+a {
+  color: inherit;
+  text-underline-offset: 4px;
+}
+button,
+a,
+summary {
+  -webkit-tap-highlight-color: transparent;
+}
+button {
+  color: inherit;
+}
+button:not(:disabled),
+summary {
+  cursor: pointer;
+}
+button:focus-visible,
+a:focus-visible,
+summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 5px;
+  border-radius: 3px;
+}
+img {
+  max-width: 100%;
+}
 #root {
   min-height: 100vh;
 }
-
 .MuiTypography-root,
 .MuiButton-root,
-.MuiChip-root,
 .MuiCard-root,
 .MuiToolbar-root,
 .MuiAppBar-root,
-.MuiFab-root,
 .MuiIconButton-root {
   font-family: var(--font-body) !important;
 }
-
 ::selection {
-  background: rgba(204, 37, 44, 0.35);
-  color: #ffffff;
+  background: #d9c5ef;
+  color: #30203e;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }

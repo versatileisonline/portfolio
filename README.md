@@ -16,7 +16,7 @@ A personal portfolio for Bryan Torres, featuring selected software engineering, 
 - Project features for Codeward, Kingdom Tycoon, KV Cache Lab, TDS: Dataset Diversity, melanoma classification, Canvas+, M.A.R.C.O., and Project Syndicate
 - Resume PDFs and a melanoma-classification paper
 - Original project visuals and personal photography, including compressed image variants for the web
-- Local Poppins font files
+- Locally hosted Inter variable font, with its bundled license
 - Contact links for email, GitHub, LinkedIn, and the current resume at `src/assets/resume.pdf`
 - Markdown-powered writing drafts in `src/content/writing/`
 
@@ -47,10 +47,29 @@ To refresh the optional static snapshot in `docs/` locally:
 npm run deploy-local
 ```
 
+## Interface and source organization
+
+The portfolio opens in light mode. The top-right theme switcher remembers an
+explicit dark or light preference. The existing landscape portrait sits above
+the introduction, placeholder personal bullets, and compact contact links.
+Experience and project rows expand inline without removing their descriptions,
+links, imagery, or technical details.
+
+- `src/App.tsx`: application shell and routes
+- `src/content/portfolio.tsx`: existing portfolio content and assets
+- `src/pages/`: home, about, and writing page compositions
+- `src/components/`: focused section and navigation components
+- `src/hooks/useTheme.ts`: saved theme preference, with light as the default
+- `src/hooks/useSectionNavigation.ts`: section scrolling and active navigation
+
+The desktop section rail reveals labels on hover or keyboard focus. On phones,
+its links appear in a compact row below the header. Reduced-motion preferences
+are respected by navigation and interface transitions.
+
 ## Keeping projects and the resume current
 
-Project cards and their detail dialogs share the `projectCards` entries in
-`src/App.tsx`. Update an existing entry as work lands, or add an entry with its
+Project summaries and their expandable details share the `projectCards` entries in
+`src/content/portfolio.tsx`. Update an existing entry as work lands, or add an entry with its
 period, description, tags, repository link, and detail paragraphs for a new project.
 Keep completed work, next implementations, and longer-term options distinct.
 
@@ -65,7 +84,7 @@ as future work until the corresponding implementation and validation exist.
 Replace `src/assets/resume.pdf` with the latest approved PDF to update the resume
 link without changing the import. Vite generates a content-hashed production URL
 on each changed version. Run `npm run lint` and `npm run build`, then verify the
-resume link and changed project dialogs in the preview before committing.
+resume link and changed expandable project details in the preview before committing.
 
 ## Writing and future work
 
