@@ -1,28 +1,197 @@
-.companion-sprite {
+@font-face {
+  font-family: "VT323";
+  src: url("../assets/VT323-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+.penguin-companion {
+  --rest-frame: 0% 0%;
+  --talk-frame: 33.333333% 0%;
+  --talk-drop: 0px;
   position: fixed;
   top: 0;
   left: 0;
-  width: 96px;
-  height: 144px;
+  width: 72px;
+  height: 72px;
   z-index: 1200;
+  opacity: 0;
+  pointer-events: none;
+}
+.penguin-companion[data-ready="true"] {
+  opacity: 1;
+}
+.penguin-companion[data-facing="left"] {
+  --rest-frame: 66.666667% 0%;
+  --talk-frame: 33.333333% 100%;
+  --talk-drop: 3.4px;
+}
+.penguin-companion[data-facing="right"] {
+  --rest-frame: 100% 0%;
+  --talk-frame: 66.666667% 100%;
+  --talk-drop: 3.4px;
+}
+.companion-sprite {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 72px;
+  height: 72px;
   padding: 0;
   border: 0;
-  background: url("../assets/purple-companion.png") no-repeat left center / 200%
-    100%;
+  background: transparent;
+  color: inherit;
   cursor: grab;
   touch-action: none;
   user-select: none;
-  image-rendering: pixelated;
+  pointer-events: auto;
+  -webkit-user-drag: none;
 }
-.companion-sprite[data-state="dragging"] {
+.companion-sprite * {
+  cursor: inherit;
+}
+.penguin-companion[data-state="dragging"] .companion-sprite {
   cursor: grabbing;
 }
-.companion-sprite[data-state="parachuting"] {
-  background-position: right center;
+.penguin-waddle,
+.penguin-breathe,
+.penguin-squeeze,
+.penguin-art {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform-origin: 50% 87%;
+}
+.penguin-art {
+  background: url("../assets/penguin-sprites.png") no-repeat var(--rest-frame) /
+    400% 300%;
+  image-rendering: pixelated;
+}
+.penguin-breathe {
+  animation: penguin-breathe 3s ease-in-out infinite;
+}
+.penguin-companion[data-state="walking"] .penguin-waddle {
+  animation: penguin-waddle 480ms ease-in-out infinite;
+}
+.penguin-companion[data-state="walking"]:not([data-talking="true"])
+  .penguin-art {
+  animation: penguin-footsteps 480ms steps(1, end) infinite;
+}
+.penguin-companion[data-state="walking"][data-facing="left"]:not([data-talking="true"]) .penguin-art {
+  transform: scaleX(-1);
+}
+.penguin-companion[data-talking="true"] .penguin-art {
+  animation: penguin-talk 190ms steps(1, end) infinite;
+}
+.penguin-companion[data-blink="true"]:not([data-talking="true"]) .penguin-art {
+  background-position: 100% 100%;
+  translate: 0 3.4px;
+}
+.penguin-companion[data-scared="true"] .penguin-art {
+  background-position: 66.666667% 50%;
+  translate: 0 3px;
+  animation: penguin-panic 160ms steps(1, end) infinite;
+}
+.penguin-companion[data-scared="true"] .penguin-waddle {
+  transform: rotate(var(--flight-tilt, 0deg));
+}
+.penguin-companion[data-happy="true"] .penguin-waddle {
+  animation: penguin-happy 900ms ease-in-out infinite;
+}
+.penguin-companion[data-squeezing="true"] .penguin-squeeze {
+  animation: penguin-squeeze 310ms ease-out;
+}
+.penguin-companion[data-state="landing"] .penguin-squeeze {
+  animation: penguin-land 430ms ease-out;
+}
+.penguin-parachute {
+  position: absolute;
+  z-index: 0;
+  left: -16px;
+  bottom: 12px;
+  width: 104px;
+  height: 104px;
+  pointer-events: none;
+  background: url("../assets/penguin-sprites.png") no-repeat 0% 100% / 400% 300%;
+  image-rendering: pixelated;
+  opacity: 0;
+  transform-origin: 50% 100%;
+  transform: scale(0.4);
+  transition:
+    opacity 120ms ease,
+    transform 200ms cubic-bezier(0.2, 0.9, 0.3, 1.2);
+}
+.penguin-companion[data-parachute="true"] .penguin-parachute {
+  opacity: 1;
+  transform: scale(1);
+}
+.penguin-speech {
+  --bubble-ink: #1c2327;
+  --bubble-paper: #fffdf7;
+  position: absolute;
+  z-index: 2;
+  left: var(--bubble-left, 64px);
+  top: var(--bubble-top, -10px);
+  width: max-content;
+  min-height: 42px;
+  max-width: var(--bubble-max-width, 230px);
+  padding: 10px 13px;
+  color: var(--bubble-ink);
+  font-family: "VT323", monospace;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.05;
+  overflow-wrap: break-word;
+  -webkit-font-smoothing: none;
+  text-rendering: geometricPrecision;
+  pointer-events: none;
+  text-align: left;
+  filter: drop-shadow(0 3px 0 rgb(0 0 0 / 10%));
+  animation: penguin-speech-in 160ms steps(3, end) both;
+}
+.penguin-speech::before,
+.penguin-speech::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--bubble-ink);
+  clip-path: polygon(6px 0, calc(100% - 6px) 0, calc(100% - 6px) 3px, calc(100% - 3px) 3px, calc(100% - 3px) 6px, 100% 6px, 100% calc(100% - 6px), calc(100% - 3px) calc(100% - 6px), calc(100% - 3px) calc(100% - 3px), calc(100% - 6px) calc(100% - 3px), calc(100% - 6px) 100%, 6px 100%, 6px calc(100% - 3px), 3px calc(100% - 3px), 3px calc(100% - 6px), 0 calc(100% - 6px), 0 6px, 3px 6px, 3px 3px, 6px 3px);
+}
+.penguin-speech::after {
+  inset: 3px;
+  background: var(--bubble-paper);
+  clip-path: polygon(3px 0, calc(100% - 3px) 0, calc(100% - 3px) 3px, 100% 3px, 100% calc(100% - 3px), calc(100% - 3px) calc(100% - 3px), calc(100% - 3px) 100%, 3px 100%, 3px calc(100% - 3px), 0 calc(100% - 3px), 0 3px, 3px 3px);
+}
+.penguin-speech-copy {
+  position: relative;
+  z-index: 1;
+}
+.penguin-speech-tail {
+  position: absolute;
+  z-index: 2;
+  left: -15px;
+  top: var(--bubble-tail-top, 12px);
+  width: 18px;
+  height: 18px;
+  background: var(--bubble-ink);
+  clip-path: polygon(100% 0, 100% 100%, 66.667% 100%, 66.667% 83.333%, 33.333% 83.333%, 33.333% 66.667%, 0 66.667%, 0 33.333%, 33.333% 33.333%, 33.333% 16.667%, 66.667% 16.667%, 66.667% 0);
+}
+.penguin-speech-tail::after {
+  content: "";
+  position: absolute;
+  inset: 3px -3px 3px 6px;
+  background: var(--bubble-paper);
+  clip-path: polygon(100% 0, 100% 100%, 66.667% 100%, 66.667% 75%, 33.333% 75%, 33.333% 50%, 0 50%, 33.333% 25%, 66.667% 25%, 66.667% 0);
+}
+.penguin-companion[data-speech-side="left"] .penguin-speech-tail {
+  left: auto;
+  right: -15px;
+  transform: scaleX(-1);
 }
 .companion-sprite:focus-visible {
-  outline-color: #9163c2;
-  outline-offset: -3px;
+  outline: 2px solid var(--accent);
+  outline-offset: -4px;
+  border-radius: 5px;
 }
 .companion-toggle {
   position: fixed;
@@ -43,9 +212,109 @@
   width: 10px;
   height: 10px;
 }
-
+@keyframes penguin-breathe {
+  0%,
+  100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(1.025);
+  }
+}
+@keyframes penguin-waddle {
+  0%,
+  100% {
+    transform: rotate(-5deg) translateY(0);
+  }
+  50% {
+    transform: rotate(5deg) translateY(-2px);
+  }
+}
+@keyframes penguin-footsteps {
+  0%,
+  49% {
+    background-position: 0% 50%;
+    translate: 0 2.4px;
+  }
+  50%,
+  100% {
+    background-position: 33.333333% 50%;
+    translate: 0 2.2px;
+  }
+}
+@keyframes penguin-talk {
+  0%,
+  49% {
+    background-position: var(--rest-frame);
+    translate: 0 0;
+  }
+  50%,
+  100% {
+    background-position: var(--talk-frame);
+    translate: 0 var(--talk-drop);
+  }
+}
+@keyframes penguin-happy {
+  0%, 100% { transform: rotate(-6deg) translateY(0); }
+  50% { transform: rotate(6deg) translateY(-3px); }
+}
+@keyframes penguin-panic {
+  0%,
+  49% {
+    background-position: 66.666667% 50%;
+  }
+  50%,
+  100% {
+    background-position: 100% 50%;
+  }
+}
+@keyframes penguin-squeeze {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  35% {
+    transform: scale(1.15, 0.78);
+  }
+  70% {
+    transform: scale(0.97, 1.04);
+  }
+}
+@keyframes penguin-land {
+  0% {
+    transform: scale(1.15, 0.78);
+  }
+  55% {
+    transform: scale(0.97, 1.04);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes penguin-speech-in {
+  from {
+    opacity: 0;
+    transform: translateY(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 @media (max-width: 760px) {
   .companion-toggle {
     left: 12px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .penguin-waddle,
+  .penguin-breathe,
+  .penguin-squeeze,
+  .penguin-art,
+  .penguin-speech {
+    animation: none !important;
+  }
+  .penguin-parachute {
+    transition: none !important;
   }
 }

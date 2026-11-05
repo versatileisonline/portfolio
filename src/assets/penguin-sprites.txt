@@ -1,0 +1,7 @@
+Penguin companion sprite atlas
+
+Created with the built-in image-generation tool on 2026-11-05 using the user-provided penguin screenshot as the visual reference.
+
+Prompt: Preserve the supplied charcoal, gray, white and yellow pixel penguin design and create a transparent four-column, three-row sheet. Frames: neutral front, talking front, looking left, looking right; left and right waddle steps; two scared lifted poses with glasses pushed to forehead, wide eyes, screaming mouth and flailing flippers; parachute canopy and ropes without the body; talking left, talking right, blinking. Same body proportions and pixel palette, aligned size and baseline, no text or added accessories in the neutral poses.
+
+The sheet is consumed directly with CSS sprite positions. Speech pools live in src/components/companion/dialogue.ts; movement and interactions are separate from the React view.
