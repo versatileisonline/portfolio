@@ -1,0 +1,51 @@
+.companion-sprite {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 96px;
+  height: 144px;
+  z-index: 1200;
+  padding: 0;
+  border: 0;
+  background: url("../assets/purple-companion.png") no-repeat left center / 200%
+    100%;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  image-rendering: pixelated;
+}
+.companion-sprite[data-state="dragging"] {
+  cursor: grabbing;
+}
+.companion-sprite[data-state="parachuting"] {
+  background-position: right center;
+}
+.companion-sprite:focus-visible {
+  outline-color: #9163c2;
+  outline-offset: -3px;
+}
+.companion-toggle {
+  position: fixed;
+  bottom: 8px;
+  left: 24px;
+  z-index: 1201;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  background: var(--bg-primary);
+  border: 0;
+  padding: 3px 0;
+  color: var(--text-muted);
+  font-size: 9px;
+  line-height: 1.4;
+}
+.companion-toggle .MuiSvgIcon-root {
+  width: 10px;
+  height: 10px;
+}
+
+@media (max-width: 760px) {
+  .companion-toggle {
+    left: 12px;
+  }
+}

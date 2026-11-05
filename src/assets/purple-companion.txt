@@ -1,0 +1,7 @@
+Purple companion sprite
+
+Generated using the built-in image-generation tool on 2026-11-05.
+Original sheet preserved as purple-companion.png with alpha transparency.
+The left half is the ground sprite; the right half adds a parachute.
+
+Prompt: A transparent two-column sprite sheet of the same tiny friendly lavender-purple pixel-art bean creature, with dark eyes, tiny arms and feet, a friendly face, and consistent violet shading. Left: standing creature with transparent space above. Right: identical creature attached by fine pixel ropes to an open pale lavender parachute. Same size and baseline in each half. Crisp discrete square pixels, no text, panels, ground, glow, blur, or other objects.

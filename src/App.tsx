@@ -7,6 +7,7 @@ import DarkModeRoundedIcon from "@mui/icons-material/DarkModeRounded";
 import LightModeRoundedIcon from "@mui/icons-material/LightModeRounded";
 import WestRoundedIcon from "@mui/icons-material/WestRounded";
 import resume from "./assets/resume.pdf";
+import Companion from "./components/Companion";
 import SectionRail from "./components/SectionRail";
 import HomePage from "./pages/HomePage";
 import { BlogIndexPage, BlogPostPage } from "./pages/WritingPages";
@@ -109,7 +110,7 @@ function App() {
           </footer>
         </Container>
       </main>
-
+      <Companion />
       {showScrollTop ? (
         <button
           className="scroll-top-button"

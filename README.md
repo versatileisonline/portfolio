@@ -66,6 +66,15 @@ The desktop section rail reveals labels on hover or keyboard focus. On phones,
 its links appear in a compact row below the header. Reduced-motion preferences
 are respected by navigation and interface transitions.
 
+### Purple companion
+
+`src/components/Companion.tsx` owns pointer capture, bounded movement, gravity,
+parachute descent, a gentle landing bounce, keyboard hopping, and visibility.
+It schedules animation frames only while moving, stops on unmount or hide, and
+respects reduced-motion preferences. Its styling and generated sprite sheet are
+kept alongside the component and in `src/assets/` respectively. Asset provenance
+and the generation prompt are recorded in `src/assets/purple-companion.txt`.
+
 ## Keeping projects and the resume current
 
 Project summaries and their expandable details share the `projectCards` entries in
