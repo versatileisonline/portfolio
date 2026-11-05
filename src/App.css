@@ -2,13 +2,10 @@
   --section-heading-size: 25px;
   --item-heading-size: 20px;
   --body-copy-size: 15px;
-  --rail-accent: #e2243c;
+  --rail-accent: var(--accent);
   min-height: 100vh;
   background: var(--bg-primary);
   color: var(--text-primary);
-}
-.theme-dark {
-  --rail-accent: #ff4d67;
 }
 .skip-link {
   position: fixed;
@@ -71,6 +68,8 @@
   cursor: inherit;
 }
 .brand-name {
+  color: var(--accent);
+  font-weight: 700;
   white-space: nowrap;
   transition: color 160ms ease;
 }
@@ -150,6 +149,10 @@
   font-weight: 550;
   letter-spacing: -0.055em;
   margin: 0 0 14px;
+}
+.hero-name {
+  color: var(--accent);
+  font-weight: 700;
 }
 .name-divider {
   color: #bcb6af;
@@ -481,6 +484,11 @@
   align-items: center;
   gap: 6px;
   text-decoration: none;
+  transition: color 160ms ease;
+}
+.site-footer a:hover,
+.site-footer a:focus-visible {
+  color: var(--accent);
 }
 .site-footer .MuiSvgIcon-root {
   width: 12px;
@@ -598,12 +606,12 @@
   height: 36px;
   padding: 0;
   border-radius: 50%;
-  border: 1px solid var(--line);
+  border: 1px solid var(--accent);
   background: var(--bg-primary);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text-primary);
+  color: var(--accent);
   line-height: 1;
   transition:
     background 160ms ease,
@@ -620,7 +628,7 @@
 .scroll-top-button:focus-visible {
   background: var(--accent);
   border-color: var(--accent);
-  color: var(--bg-primary);
+  color: #fff;
 }
 /* Preserve the existing writing routes with the same restrained visual language. */
 .page-summary-content.MuiCardContent-root {

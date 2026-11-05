@@ -17,8 +17,8 @@
   --text-secondary: #66615c;
   --text-muted: #79736c;
   --line: #e4e0da;
-  --accent: #9b4937;
-  --accent-strong: #7e3829;
+  --accent: #0051fc;
+  --accent-strong: var(--accent);
   --brand-accent: var(--accent);
   --section-scroll-offset: 100px;
   font-family: var(--font-body);
@@ -42,8 +42,8 @@
   --text-secondary: #b8b5af;
   --text-muted: #a6a199;
   --line: #343438;
-  --accent: #e19a82;
-  --accent-strong: #f0b39d;
+  --accent: #0051fc;
+  --accent-strong: var(--accent);
   color-scheme: dark;
 }
 
@@ -123,8 +123,8 @@ img {
   font-family: var(--font-body) !important;
 }
 ::selection {
-  background: #d9c5ef;
-  color: #30203e;
+  background: var(--accent);
+  color: #fff;
 }
 @media (prefers-reduced-motion: reduce) {
   html {

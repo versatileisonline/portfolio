@@ -1,5 +1,5 @@
 import ArrowOutwardRoundedIcon from "@mui/icons-material/ArrowOutwardRounded";
-import profilePic from "../assets/photos/profile-bryan.jpg";
+import DitherPortrait from "../components/DitherPortrait";
 import { contactLinks } from "../content/portfolio";
 import SectionHeading from "../components/SectionHeading";
 import ExperienceSection from "../components/ExperienceSection";
@@ -11,17 +11,10 @@ export default function HomePage() {
   return (
     <>
       <section id="home" className="hero-section">
-        <img
-          src={profilePic}
-          alt="Bryan Torres at Virginia Tech"
-          className="hero-photo"
-          fetchPriority="high"
-          width={792}
-          height={612}
-        />
+        <DitherPortrait />
         <div className="hero-introduction">
           <h1>
-            Bryan Torres{" "}
+            <span className="hero-name">Bryan Torres</span>{" "}
             <span className="name-divider" aria-hidden="true">
               /
             </span>{" "}
